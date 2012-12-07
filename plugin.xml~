@@ -1,0 +1,40 @@
+<plugin>
+	<nom>CinemaList</nom>
+	<auteur><!-- Auteur du plugin -->Martin Dewolf | [Benoit Vrins->mailto:benoit@exibit.be] | portage en spip 2.1 par [Rainer Müller->mailto:websolutions@mychacra.net]</auteur>
+	<version>1.5.0</version>
+	<version_base>0.1.8</version_base>	
+	<etat>test</etat>
+	<description>Outil de gestion de base de donnée de films</description>
+	<prefix>cinemalist</prefix>
+	<fonctions>cinemalist_fonctions.php</fonctions>
+	<pipeline>
+		<nom>ajouter_boutons</nom>
+		<action>ajbt</action>
+		<inclure>cinemalist_pipeline.php</inclure>
+	</pipeline>
+
+	<pipeline>
+		<nom>affiche_milieu</nom>
+		<action>affichemilieu</action>
+		<inclure>cinemalist_pipeline.php</inclure>
+	</pipeline>
+	<pipeline>
+		<nom>declarer_tables_interfaces</nom>
+		<inclure>base/cinemalist_tables_interfaces.php</inclure>
+	</pipeline>
+	
+	<pipeline>
+		<nom>declarer_tables_principales</nom>
+		<inclure>base/cinemalist_tables_principales.php</inclure>
+	</pipeline>
+	<pipeline>
+		<nom>declarer_tables_auxiliaires</nom>
+		<inclure>base/cinemalist_tables_auxiliaires.php</inclure>
+	</pipeline>
+	<pipeline>
+		<nom>declarer_url_objets</nom>
+		<inclure>cinemalist_pipeline.php</inclure>
+	</pipeline>
+			
+	<install>base/cinemalist_install.php</install>
+</plugin>

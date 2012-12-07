@@ -1,0 +1,31 @@
+<h1 class="verdana2 spip_large"><:cinemalist:Les_realisateurs:></h1>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("a.supprim img").click(function(){
+			//alert("aaa");
+			if (confirm('Voulez-vous vraiment supprimer ce réalisateur ?')) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+	});
+</script>
+
+<B_LesActeurs>
+<p class="pagination">#PAGINATION</p>
+<ul>
+<BOUCLE_LesActeurs(REALISATEURS){pagination}{par nom, prenom, date_maj}{statut != poubelle}{pagination 40}>
+	<li><a class="supprim" href="[(#URL_ECRIRE{delete_realisateurs, "id_realisateur="#ID_REALISATEUR, &})]"><img src="[(#CHEMIN{img_pack/ico_delete.gif})]" alt="Supprimer" /></a>&nbsp;<a href="[(#URL_ECRIRE{editer_realisateur, "id_realisateur="#ID_REALISATEUR, &})]">#NOM</a></li>
+</BOUCLE_LesActeurs>
+</ul>
+</B_LesActeurs>
+<:cinemalist:Pas_encore_de_realisateur:>
+<//B_LesActeurs>
+<span style="float: right; width: 80px; text-align: center;">
+	<a href="[(#URL_ECRIRE{'editer_realisateur','new=oui','&'})]">
+		<img src="[(#CHEMIN{img_pack/system-users.png})]" alt="<:cinemalist:ajouter_un_scenrasite:>" />
+		<br />
+		<:cinemalist:ajouter_un_realisateur:>
+	</a>
+</span>

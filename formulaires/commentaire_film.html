@@ -1,0 +1,75 @@
+<div class="formulaire_spip formulaire_commentaire_film">
+	[<div class="important"><a name="commentaire_film"></a>(#RESULTAT)</div>]<a name="commentaire_film"></a> 
+	<h4><:cinemalist:donnez_votre_avis_sur_le_film:></h4>
+	<form action="#SELF#commentaire_film" method="post">
+		[(#VISUALIZE|=={oui}|?{' ',''})
+
+			<br />
+			[<h5>(#TITRE|propre)</h5>]
+			<br />
+			[(#TEXTE|propre)]<br /><br />
+			[(#ETOILES|=={0}|?{' ',''})<img src='/IMG/moton3.gif' alt="0 etoiles" /><br /><br />]
+			[(#ETOILES|=={1}|?{' ',''})<img src='/IMG/moton9.gif' alt="1 etoiles" /><br /><br />]
+			[(#ETOILES|=={2}|?{' ',''})<img src='/IMG/moton10.gif' alt="2 etoiles" /><br /><br />]
+			[(#ETOILES|=={3}|?{' ',''})<img src='/IMG/moton11.gif' alt="3 etoiles" /><br /><br />]
+			[(#ETOILES|=={4}|?{' ',''})<img src='/IMG/moton12.gif' alt="4 etoiles" /><br /><br />]
+			[(#ETOILES|=={5}|?{' ',''})<img src='/IMG/moton13.gif' alt="5 etoiles" /><br /><br />]
+			[(#COEUR|?{' ',''})<img src="#CHEMIN{/img_pack/emblem-favorite.png}" alt="coups de coeur" style="float: left;" /><:cinemalist:coups_de_coeur:><br /> <br />]
+			[(#DAUBE|?{' ',''})<img src="#CHEMIN{/img_pack/dialog-error.png}" alt="daube"/> <:cinemalist:daube:><br /><br />]
+			<br />
+			<div class="spip_bouton"><input type="submit"  name="publier" value="<:publier:>" /></div>
+		]
+		<input type="hidden" name="etape" value="visualize" />
+		<input type="hidden" name="id_film" value="#ID_FILM"/>		
+		<fieldset>
+			<legend><:cinemalist:cotation_du_film:></legend>
+
+		</fieldset>
+		<fieldset>
+			<legend><:cinemalist:ecrire_un_commentaire_sur_le_film:></legend>
+			<div class="input">
+				<label for="titre_commentaire_new"><:cinemalist:Titre:></label>
+				<input type="texte" class="forml" name="titre" id="titre_commentaire_new" value="#TITRE" />
+
+				<div style='display: none;'>
+					<input type="text" class="forml" name="radar" value="" />;
+				</div>
+			</div>
+			
+			<div class="input">
+				<label for="etoiles"><:cinemalist:nombre_d_etoile:>: </label>
+				<select name="etoiles" id="etoiles">
+					<option value="0" [(#ETOILES|=={0}|?{' ',''})selected='selected'] ></option>
+					<option value="1" [(#ETOILES|=={1}|?{' ',''})selected='selected'] >*</option>
+					<option value="2" [(#ETOILES|=={2}|?{' ',''})selected='selected'] >**</option>
+					<option value="3" [(#ETOILES|=={3}|?{' ',''})selected='selected'] >***</option>
+					<option value="4" [(#ETOILES|=={4}|?{' ',''})selected='selected'] >****</option>
+					<option value="5" [(#ETOILES|=={5}|?{' ',''})selected='selected'] >*****</option>
+				</select>
+                <br />
+                
+				<input type="checkbox" name="coeur" [(#COEUR|?{' ',''})checked='checked'] id="coeur" /> <label for="coeur"><:cinemalist:coups_de_coeur:></label>
+               
+                <br />
+                
+                <input type="checkbox" name="daube" [(#DAUBE|?{' ',''})checked='checked'] id="daube" /> <label for="daube"><:cinemalist:daube:></label>
+                
+			</div>
+			<div class="input">
+				<label><:cinemalist:Votre_commentaire:> (max [(#CONFIG{cinemalist/taille_maximum_des_commentaires, 500})] char.)</label>
+				[(#TEXTE**|barre_textarea{20,40,#LANG})]
+			</div>
+			<br />
+			<div class="input">
+				<label><:cinemalist:Votre_nom:></label>
+				<input type="texte" class="forml" name="nom" id="nom_commentaire_new" value="#NOM" />
+				<label><:cinemalist:Adresse_email:></label>
+				<input type="texte" class="forml" name="email" id="email_commentaire_new" value="#EMAIL" />
+			</div>
+		</fieldset>
+
+		<div class="spip_bouton">
+			<input type="submit"  name="extra" value="<:previsualiser:>" />
+		</div>
+	</form>
+</div>
