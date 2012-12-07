@@ -156,4 +156,107 @@ function cinemalist_declarer_tables_principales($tables_principales){
 	return $tables_principales;
 	
 	}
+
+function cinemalist_declarer_tables_interfaces($tables_interfaces){
+
+    $tables_interfaces['table_des_tables']['spip_films'] = 'spip_films';
+    $tables_interfaces['table_des_tables']['films'] = 'films';  
+    $tables_interfaces['table_des_tables']['acteurs'] = 'acteurs';  
+    $tables_interfaces['table_des_tables']['acteurs_movies'] = 'acteurs_movies';        
+    $tables_interfaces['table_des_tables']['scenaristes'] = 'scenaristes';  
+    $tables_interfaces['table_des_tables']['scenaristes_movies'] = 'scenaristes_movies';
+    $tables_interfaces['table_des_tables']['realisateurs'] = 'realisateurs';    
+    $tables_interfaces['table_des_tables']['realisateurs_movies'] = 'realisateurs_movies';  
+    $tables_interfaces['table_des_tables']['geo_pays'] = 'geo_pays';
+    $tables_interfaces['table_des_tables']['commentaires_film'] = 'commentaires_film';
+    $tables_interfaces['table_des_tables']['lien_film_article'] = 'lien_film_article';
+            
+    // Titre pour url
+    $tables_interfaces['table_titre']['acteurs']= "url AS titre, '' AS lang";   
+    $tables_interfaces['table_titre']['films'] = "url as titre, '' AS lang";    
+    $tables_interfaces['table_titre']['realisateurs'] = "url AS titre, '' AS lang";  
+    $tables_interfaces['table_titre']['scenaristes'] = "url  AS titre, '' AS lang"; 
+
+                        
+    return $tables_interfaces;
+}
+
+function cinemalist_declarer_tables_auxiliaires($tables_auxiliaires){
+
+    $spip_acteurs_movies = array(
+        "id_film"       => "bigint(21) NOT NULL",
+        "id_auteur"     => "bigint(21) NOT NULL",
+        );
+
+    $spip_acteurs_movies_key = array(
+        "PRIMARY KEY"       => "id_film,id_auteur",
+        );  
+            
+    
+    $tables_auxiliaires['spip_acteurs_movies'] = array(
+        'field' => &$spip_acteurs_movies,
+        'key' => &$spip_acteurs_movies_key,
+    );
+            
+    $spip_scenaristes_movies = array(
+        "id_film"       => "bigint(21) NOT NULL",
+        "id_scenariste"     => "bigint(21) NOT NULL",
+        );
+
+    $spip_scenaristes_movies_key = array(
+        "PRIMARY KEY"       => "id_film,id_scenariste",
+        );  
+            
+    
+    $tables_auxiliaires['spip_scenaristes_movies'] = array(
+        'field' => &$spip_scenaristes_movies,
+        'key' => &$spip_scenaristes_movies_key,
+    );          
+    
+    $spip_realisateurs_movies= array(
+        "id_film"       => "bigint(21) NOT NULL",
+        "id_realisateur"        => "bigint(21) NOT NULL",
+        );
+
+    $spip_realisateurs_movies_key = array(
+        "PRIMARY KEY"       => "id_film,id_realisateur",
+        );  
+            
+    
+    $tables_auxiliaires['spip_realisateurs_movies'] = array(
+        'field' => &$spip_realisateurs_movies,
+        'key' => &$spip_realisateurs_movies_key,
+    );
+    
+    $spip_geo_pays= array(
+        "id_pays "          => "bigint(21) NOT NULL",
+        );
+
+    $spip_geo_pays_key = array(
+        "PRIMARY KEY"       => "id_pays",
+        );  
+            
+    $tables_auxiliaires['spip_geo_pays'] = array(
+        'field' => &$spip_geo_pays,
+        'key' => &$spip_geo_pays_key,
+    );
+        
+    $spip_lien_film_article= array(
+        "id"            => "bigint(21) NOT NULL",
+        "id_article"        => "bigint(21) NOT NULL",
+        "id_film"       => "bigint(21) NOT NULL",               
+        );
+
+    $spip_lien_film_article_key = array(
+        "PRIMARY KEY"       => "id",
+        "KEY id_article"    => "id_article",
+        "KEY id_film"       => "id_film",   
+        );  
+            
+    $tables_auxiliaires['spip_lien_film_article'] = array(
+        'field' => &$spip_lien_film_article,
+        'key' => &$spip_lien_film_article_key,
+    );      
+return $tables_auxiliaires;
+};
 ?>

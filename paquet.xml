@@ -1,0 +1,29 @@
+<paquet
+	prefix="cinemalist"
+	categorie="outil"
+	version="2.0.0"
+	etat="test"
+	compatibilite="[3.0.5;3.0.*]"
+	logo="prive/themes/spip/images/mcp_mm-64.png"
+	schema="0.1.8" 
+>
+	<nom>CinemaList</nom>
+
+	<auteur>Martin Dewolf</auteur>
+	<auteur lien='mailto:benoit@exibit.be'>Benoit Vrins</auteur>
+	<auteur lien='http://www.mychacra.net/'>Rainer Müller</auteur>
+
+	<licence>GNU/GPL</licence>
+	
+	<pipeline nom="affiche_milieu" inclure="cinemalist_pipelines.php" /> 
+	<pipeline nom="declarer_url_objets" inclure="cinemalist_pipelines.php" /> 	
+	<pipeline nom="declarer_tables_interfaces" inclure="base/cinemalist.php" /> 
+	<pipeline nom="declarer_tables_principales" inclure="base/cinemalist.php" /> 	
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/cinemalist.php" /> 	
+	
+
+	<menu nom="cinemalist" titre="cinemalist:cinemalist" parent="menu_edition" icone="images/video-x-generic.png" action="cinemalist" /> 
+	
+	<menu nom="commentaire_film" titre="Commentaires sur les critiques" parent="menu_activite" icone="images/internet-group-chat.png" action="commentaire_film" /> 
+	
+</paquet>

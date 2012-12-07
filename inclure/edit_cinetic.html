@@ -39,16 +39,17 @@ function unhtmlentities($string)
 $sql = "SELECT *  FROM  spip_films WHERE  id_film = '".$_GET["id_film"]."'";
 $result = mysql_query($sql);
 $row = mysql_fetch_object($result);
-
-echo '<div style="height: 40px;" ><br />
-'.definir_puce().'<a href="'.generer_url_ecrire('cinemalist_liaison','idmovie='.$_GET["idmovie"]).'" >Gérer les acteurs, scénaristes et réalisateur de ce film</a><br />
-</div>';
-
 ?>
 
 
-<form action="<?php echo $PHP_SELF; ?>?exec=cinetic&comm=edit_enreg&id_film=<?php echo $_GET["id_film"]; ?>" method="POST" enctype="multipart/form-data" name="from" class="form_cinetic">
-<table width=100% border=0 cellpadding='4' cellspacing='2'>
+<form action="[(#URL_ECRIRE{cinemalist}|parametre_url{comm,edit_enreg}|parametre_url{id_film,#ENV{id_film}})]" method="POST" enctype="multipart/form-data" name="from" class="form_cinetic">
+<table  class='spip liste' width=100% border=0 cellpadding='4' cellspacing='2'>
+    <caption><strong class="caption">Editer un film</strong>
+        <br />
+[(#VAL|definir_puce)] <a href="[(#URL_ECRIRE{cinemalist_liaison}|parametre_url{id_film,#ENV{id_film}})]" >Gérer les acteurs, scénaristes et réalisateur de ce film</a><br />
+
+        
+    </caption>
 <tr>
 	<td class="tbl" >Titre du film</td>
 	<td class="tbl" ><input name="title" value="<?php echo $row->title; ?>" class="trous" type="text"></td>
@@ -59,7 +60,7 @@ echo '<div style="height: 40px;" ><br />
 </tr>
 
 <tr>
-	<td class="tbl" >Ann&eacute;e</td>
+	<td class="tbl" >Année</td>
 	<td class="tbl" ><input name="annee" value="<?php echo $row->annee; ?>" class="trous" type="text"></td>
 </tr>
 <tr>
@@ -68,12 +69,12 @@ echo '<div style="height: 40px;" ><br />
 aaaa-mm-jj</td>
 </tr>
 <tr>
-	<td class="tbl" >Sortie fran&ccedil;aise</td>
+	<td class="tbl" >Sortie française</td>
 	<td class="tbl" ><input name="sortie_fr" type="text" value="<?php echo $row->sortie_fr; ?>" size="15" maxlength="10">
 aaaa-mm-jj</td>
 </tr>
 <tr>
-	<td class="tbl" >R&eacute;alisateur</td>
+	<td class="tbl" >Réalisateur</td>
 	<td class="tbl" ><input name="realisateur" value="<?php echo $row->realisateur; ?>" class="trous" type="text"></td>
 </tr>
 <tr>
@@ -81,7 +82,7 @@ aaaa-mm-jj</td>
 	<td class="tbl" ><input name="pays" value="<?php echo $row->pays; ?>" class="trous" type="text"></td>
 </tr>
 <tr>
-	<td class="tbl" >Dur&eacute;e</td>
+	<td class="tbl" >Durée</td>
 	<td class="tbl" ><input name="duree" value="<?php echo $row->duree; ?>" class="trous" type="text"></td>
 </tr>
 <tr>
@@ -89,15 +90,15 @@ aaaa-mm-jj</td>
 	<td class="tbl" ><input name="budget" value="<?php echo $row->budget; ?>" class="trous" type="text"></td>
 </tr>
 <tr>
-	<td class="tbl" >Meilleurs sc&egrave;nes</td>
+	<td class="tbl" >Meilleurs scènes</td>
 	<td class="tbl" ><textarea name="scenes" rows="3" cols="25" class="trous"><?php echo $row->scenes; ?></textarea></td>
 </tr>
 <tr>
-	<td class="tbl" >Sc&eacute;nariste</td>
+	<td class="tbl" >Scénariste</td>
 	<td class="tbl" ><textarea name="scenariste" rows="3" cols="25" class="trous"><?php echo $row->scenariste; ?></textarea></td>
 </tr>
 <tr>
-	<td class="tbl" >R&eacute;compenses</td>
+	<td class="tbl" >Récompenses</td>
 	<td class="tbl" ><textarea name="recompenses" rows="3" cols="25" class="trous"><?php echo $row->recompenses; ?></textarea></td>
 </tr>
 <tr>
@@ -136,7 +137,7 @@ if(empty($row->logo)){
 <?php
 }
 else{
-echo '<img src="../plugins/cinetic/upload_film/'.$row->logo.'" alt="" width="150" border="0">';
+echo '<img src="'.find_in_path('IMG/logos_films/').$row->logo.'" alt="" width="150" border="0">';
 echo '<input type="hidden" value="'.$row->logo.'" name="oldlogo" class="trous">';
 echo '<input type="checkbox" name="deleted" value="1" />Effacer l\'image';
 }

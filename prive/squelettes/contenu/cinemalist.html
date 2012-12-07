@@ -1,0 +1,27 @@
+[(#BOITE_OUVRIR{
+    [(#CHEMIN_IMAGE{bobine.png}|image_reduire{40,*}|extraire_attribut{src}|balise_img{'','cadre-icone'})]
+
+
+    <h1>Cinema List </h1>
+ ,'simple personnel infos'})]
+
+            
+[(#ENV{comm}|non)
+    <INCLURE{fond=inclure/cinemalist,env,ajax}/>
+]
+[(#ENV{comm}|=={add}|oui)
+    <INCLURE{fond=inclure/add_cinetic,env}/>
+    ]
+[(#ENV{comm}|=={edit}|oui)
+    <INCLURE{fond=inclure/edit_cinetic,env}/>
+    ]
+[(#ENV{comm}|=={add_enreg}|oui)
+    <INCLURE{fond=inc/add_enreg_cinetic}/>
+    ]  
+[(#ENV{comm}|=={edit_enreg}|oui)
+    <INCLURE{fond=inc/edit_enreg_cinetic}/>
+    ]  
+[(#ENV{comm}|=={del}|oui)
+    <INCLURE{fond=inc/del_cinetic}/>
+    ]  
+#BOITE_FERMER

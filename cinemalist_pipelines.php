@@ -8,26 +8,6 @@
    	 return $array;
 	}
 
-	function cinemalist_ajbt($boutons_admin) {
-		// si on est admin
-		if ($GLOBALS['connect_statut'] == "0minirezo" && $GLOBALS["connect_toutes_rubriques"]) {
-		
-		  // on voit les bouton dans la barre "accueil"
-			$boutons_admin['naviguer']->sousmenu["cinemalist"]= new Bouton(
-			find_in_path("/img_pack/video-x-generic.png"),  // icone
-			_L("CinemaList") //titre
-			);
-		}
-		if ($GLOBALS['connect_statut'] == "0minirezo" && $GLOBALS["connect_toutes_rubriques"]) {
-		
-		  // on voit les bouton dans la barre "accueil"
-			$boutons_admin['forum']->sousmenu["commentaire_film"]= new Bouton(
-			find_in_path("/img_pack/internet-group-chat.png"),  // icone
-			_L("Commentaires sur les critiques") //titre
-			);
-		}
-		return $boutons_admin;
-	}
 
 
 	function cinemalist_ajouterOnglets($flux) {
@@ -35,8 +15,8 @@
 		return $flux;
 	}
 
-	function cinemalist_affichemilieu($flux){
-		if ($flux['args']['exec'] == "articles"){
+	function cinemalist_affiche_milieu($flux){
+		if ($flux['args']['exec'] == "article"){
 			$flux['data'] = 
 			$liaison_ok = false;
 			$id_film = _request('id_film');

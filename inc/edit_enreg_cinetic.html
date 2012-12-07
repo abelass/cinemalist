@@ -62,13 +62,13 @@ if(empty($_POST["oldlogo"]) || ($_POST["deleted"]==1)){
 $nom_file = $_FILES['logo']['name'];
 $taille = $_FILES['logo']['size'];
 $tmp = $_FILES['logo']['tmp_name'];
-$target = chemin('/IMG/logos_films/'); // Repertoire cible
+$target = find_in_path('/IMG/logos_films/'); // Repertoire cible
 $extensions = array('.jpg', '.JPG' , 'jpeg', 'JPEG'); // Extension du fichier sans le .
 $ext = strtolower(substr($nom_file,'-4'));
 $max_size = 100000; // Taille max en octets du fichier
 $width_max = 600; // Largeur max de l'image en pixels
 $height_max = 900;    // Hauteur max de l'image en pixels
-echo 'target:' .$target;
+
 // On v&eacute;rifie si le champ est rempli
     if($nom_file) {
         // On v&eacute;rifie l'extension du fichier
@@ -143,7 +143,7 @@ $valeurs=array(
 	sql_updateq('spip_films',$valeurs,'id_film='._request('id_film'));
 	
 
-echo "<p>Le film \"<strong><a href='?exec=cinetic&comm=edit&id_film=".$_GET["id_film"]."'>".$_POST['title']."</a></strong>\" a correctement &eacute;t&eacute; modifi&eacute;</p><p><a href='?exec=cinetic'>>> Retour &agrave; la liste des films<a/></p>";
+echo "<p>Le film \"<strong><a href='?exec=cinetic&comm=edit&id_film=".$_GET["id_film"]."'>".$_POST['title']."</a></strong>\" a correctement &eacute;t&eacute; modifi&eacute;</p><p><a href='?exec=cinemalist'>>> Retour &agrave; la liste des films<a/></p>";
 
     include_spip('inc/invalideur');
     suivre_invalideur("id='id_forum/a$id_article'");

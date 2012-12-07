@@ -1,0 +1,34 @@
+
+table {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.headtbl{
+	background-color: #8A8A8A;
+	font-weight: bold;
+	color: White;
+}
+.tbl{
+	background-color: #DDDDDD;
+	margin:2px;
+}
+.form_cinetic INPUT, .form_cinetic TEXTAREA{
+	border: 1px solid #5A5A5A;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #F5F5F5;
+}
+.trous{
+	width:200px;
+	padding:2px;
+	margin:2px;
+}
+.bosses{
+	border: 1px solid #F5F5F5;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #8A8A8A;
+	font-weight: bold;
+	padding:2px;
+	margin:2px;
+}

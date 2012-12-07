@@ -1,0 +1,33 @@
+[(#BOITE_OUVRIR{
+    [(#CHEMIN_IMAGE{bobine.png}|image_reduire{36,*}|extraire_attribut{src}|balise_img{'','cadre-icone'})]
+
+    <h3>CinemaList</h3> 
+    <p>permet de g&eacute;rer une base de donn&eacute;es de films.</p>
+    
+    ,'simple personnel infos'})]
+
+[(#FORMULAIRE_INSTITUER_OBJET{commandes,#ID_COMMANDE})]
+
+#BOITE_FERMER 
+ 
+[(#REM)Les raccoursis]
+
+[(#BOITE_OUVRIR{
+    [(#CHEMIN_IMAGE{logo_shop_24.png}|balise_img{'','cadre-icone'})]
+    
+,'simple personnel'})]
+<h3 style="text-align:center;"><:spip:titre_cadre_raccourcis:></h3>
+
+<div>
+<ol class="shortcut">
+    <li><a href="[(#URL_ECRIRE{cinemalist}|parametre_url{comm,add})]"class="cellule-h">[(#CHEMIN_IMAGE{video-x-generic.png}|image_reduire{16})] &nbsp;<:cinemalist:ajouter_un_film:></a></li>
+    <li><a href="[(#URL_ECRIRE{cinemalist})]"class="cellule-h">[(#CHEMIN_IMAGE{video-x-generic.png}|image_reduire{16})] &nbsp;<:cinemalist:consulter_les_films:></a></li>    
+    <li><a href="[(#URL_ECRIRE{acteurs})]"class="cellule-h">[(#CHEMIN_IMAGE{system-users.png}|image_reduire{16})] &nbsp;<:cinemalist:gerer_les_acteurs:></a></li>   
+    <li><a href="[(#URL_ECRIRE{realisateurs})]"class="cellule-h">[(#CHEMIN_IMAGE{system-users.png}|image_reduire{16})] &nbsp;<:cinemalist:gerer_les_realisteurs:></a></li>   
+    <li><a href="[(#URL_ECRIRE{scenaristes})]"class="cellule-h">[(#CHEMIN_IMAGE{system-users.png}|image_reduire{16})] &nbsp;<:cinemalist:gerer_les_scenaristes:></a></li>   
+                
+        
+</ol>
+</div>
+
+#BOITE_FERMER

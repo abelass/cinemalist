@@ -13,8 +13,12 @@
 	'titre'=>'Titre',
 	'Votre_commentaire'=>'Votre commentaire',
 	'votre_nom'=>'Votre nom/pseudo',
-	'nombre_d_etoile'=>'Nombre d\'&eacute;toiles'
-
+	'nombre_d_etoile'=>'Nombre d\'&eacute;toiles',
+	'ajouter_un_film'=>'Ajouter un film',	
+	'consulter_les_films'=>'Consulter les films',	
+	'gerer_les_acteurs'=>'Gerer les acteurs',	
+	'gerer_les_realisteurs'=>'Gerer les Réalisateurs',	
+	'gerer_les_scenaristes'=>'Gerer les Scénaristes',				
 	
 	);
 ?>

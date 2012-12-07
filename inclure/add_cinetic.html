@@ -1,5 +1,7 @@
-<form action="<?php echo $PHP_SELF; ?>?exec=cinetic&comm=add_enreg" method="POST" enctype="multipart/form-data" class="form_cinetic">
-<table width=100% border=0 cellpadding='4' cellspacing='2'>
+<form action="[(#URL_ECRIRE{cinemalist}|parametre_url{comm,add_enreg})]" method="POST" enctype="multipart/form-data" class="form_cinetic">
+<table class='spip liste' width="100%" border="0" cellpadding='4' cellspacing='2'>
+        <caption><strong class="caption">Ajouter un film</strong></caption>
+        
 <tr>
 	<td class="tbl" >Titre du film</td>
 	<td class="tbl" ><input name="title" value="" class="trous" type="text"></td>
@@ -86,7 +88,5 @@
 	<td class="tbl" ><input value="Ajouter" class="bosses" type="submit"></td>
 </tr>
 </table>
-
-
 
 </form>
