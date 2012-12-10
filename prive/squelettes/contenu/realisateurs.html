@@ -16,7 +16,7 @@
 <p class="pagination">#PAGINATION</p>
 <ul>
 <BOUCLE_LesActeurs(REALISATEURS){pagination}{par nom, prenom, date_maj}{statut != poubelle}{pagination 40}>
-	<li><a class="supprim" href="[(#URL_ECRIRE{delete_realisateurs, "id_realisateur="#ID_REALISATEUR, &})]"><img src="[(#CHEMIN{img_pack/ico_delete.gif})]" alt="Supprimer" /></a>&nbsp;<a href="[(#URL_ECRIRE{editer_realisateur, "id_realisateur="#ID_REALISATEUR, &})]">#NOM#NOM</a></li>
+	<li><a class="supprim" href="[(#URL_ECRIRE{delete_realisateurs, "id_realisateur="#ID_REALISATEUR, &})]"><img src="[(#CHEMIN_IMAGE{ico_delete.gif})]" alt="Supprimer" /></a>&nbsp;<a href="[(#URL_ECRIRE{editer_realisateur, "id_realisateur="#ID_REALISATEUR, &})]">#NOM</a></li>
 </BOUCLE_LesActeurs>
 </ul>
 </B_LesActeurs>
@@ -24,7 +24,7 @@
 <//B_LesActeurs>
 <span style="float: right; width: 80px; text-align: center;">
 	<a href="[(#URL_ECRIRE{'editer_realisateur','new=oui','&'})]">
-		<img src="[(#CHEMIN{img_pack/system-users.png})]" alt="<:cinemalist:ajouter_un_scenrasite:>" />
+		<img src="[(#CHEMIN_IMAGE{system-users.png})]" alt="<:cinemalist:ajouter_un_scenrasite:>" />
 		<br />
 		<:cinemalist:ajouter_un_realisateur:>
 	</a>

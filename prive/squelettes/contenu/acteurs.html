@@ -16,7 +16,7 @@
 <p class="pagination">#PAGINATION</p>
 <ul>
 <BOUCLE_LesActeurs(ACTEURS){pagination}{par nom, prenom, date_maj}{statut != poubelle}{pagination 40}>
-	<li><a class="supprim" href="[(#URL_ECRIRE{delete_acteurs, "id_acteur="#ID_ACTEUR, &})]"><img src="[(#CHEMIN{img_pack/ico_delete.gif})]" alt="Supprimer" /></a>&nbsp;<a href="[(#URL_ECRIRE{editer_acteur, "id_acteur="#ID_ACTEUR, &})]">[(#PRENOM|transformer_prenom{#NOM,#ID_ACTEUR,acteur}) ]#NOM </a></li>
+	<li><a class="supprim" href="[(#URL_ECRIRE{delete_acteurs, "id_acteur="#ID_ACTEUR, &})]"><img src="[(#CHEMIN_IMAGE{ico_delete.gif})]" alt="Supprimer" /></a>&nbsp;<a href="[(#URL_ECRIRE{editer_acteur, "id_acteur="#ID_ACTEUR, &})]">#NOM </a></li>
 	<!-- <li><a class="supprim" href="#"><img src="[(#CHEMIN{img_pack/ico_delete.gif})]" alt="Supprimer" /></a>&nbsp;<a href="[(#URL_ECRIRE{editer_acteur, "id_acteur="#ID_ACTEUR, &})]">#NOM #PRENOM</a></li> -->
 </BOUCLE_LesActeurs>
 </ul>
@@ -25,7 +25,7 @@
 <//B_LesActeurs>
 <span style="float: right; width: 80px; text-align: center;">
 	<a href="[(#URL_ECRIRE{'editer_acteur','new=oui','&'})]">
-		<img src="[(#CHEMIN{img_pack/system-users.png})]" alt="<:cinemalist:ajouter_un_acteur:>" />
+		<img src="[(#CHEMIN_IMAGE{system-users.png})]" alt="<:cinemalist:ajouter_un_acteur:>" />
 		<br />
 		<:cinemalist:ajouter_un_acteur:>
 	</a>
