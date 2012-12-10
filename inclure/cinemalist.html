@@ -9,9 +9,9 @@
     [<tr>
         <td class="pagination" colspan="4">(#PAGINATION)</td>
     </tr>]  
-    <BOUCLE_liste_film(FILMS){par title}{pagination 200}>
+    <BOUCLE_liste_film(FILMS){par title} {pagination 200}>
     <tr>
-        <td class="tbl" valign="top">#TITLE</td>
+        <td class="tbl" valign="top">[(#TITLE)]</td>
         <td class="tbl" valign="top">#TITLE_VO</td>
         <td class="tbl" valign="top">
             <a href="[(#URL_ECRIRE{cinemalist,comm=edit&id_film=#ID_FILM})]"><img src="#CHEMIN_IMAGE{ico_edit.gif}" alt="edit"></a> </td>

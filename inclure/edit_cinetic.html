@@ -1,47 +1,4 @@
-<?php
-// ***********************************************************
-// **********  FORMAT DE DATES   *****************************
-// ***********************************************************
-
-function datetoFR($date){
-if(!empty($date)){
-list($year, $month, $day) = explode("-", $date);
-return $lastmodified = "$day/$month/$year";
-}
-else{
-return $date;
-}
-}
-
-function datetosql($date){
-if(!empty($date)){
-list($day, $month, $year) = explode("/", $date);
-return $lastmodified = "$year-$month-$day";
-}
-else{
-return $date;
-}
-}
-
-
-function unhtmlentities($string)
-{
-   // replace numeric entities
-   $string = preg_replace('~&#x([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $string);
-   $string = preg_replace('~&#([0-9]+);~e', 'chr(\\1)', $string);
-   // replace literal entities
-   $trans_tbl = get_html_translation_table(HTML_ENTITIES);
-   $trans_tbl = array_flip($trans_tbl);
-   return strtr($string, $trans_tbl);
-}
-
-
-$sql = "SELECT *  FROM  spip_films WHERE  id_film = '".$_GET["id_film"]."'";
-$result = mysql_query($sql);
-$row = mysql_fetch_object($result);
-?>
-
-
+<BOUCLE_film(FILMS){id_film}>
 <form action="[(#URL_ECRIRE{cinemalist}|parametre_url{comm,edit_enreg}|parametre_url{id_film,#ENV{id_film}})]" method="POST" enctype="multipart/form-data" name="from" class="form_cinetic">
 <table  class='spip liste' width=100% border=0 cellpadding='4' cellspacing='2'>
     <caption><strong class="caption">Editer un film</strong>
@@ -52,79 +9,78 @@ $row = mysql_fetch_object($result);
     </caption>
 <tr>
 	<td class="tbl" >Titre du film</td>
-	<td class="tbl" ><input name="title" value="<?php echo $row->title; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="title" value="[(#TITLE)]" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Titre en Vo</td>
-	<td class="tbl" ><input name="title_VO" value="<?php echo $row->title_VO; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="title_VO" value="[(#TITLE_VO)]" class="trous" type="text"></td>
 </tr>
 
 <tr>
 	<td class="tbl" >Année</td>
-	<td class="tbl" ><input name="annee" value="<?php echo $row->annee; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="annee" value="#ANNEE" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Sortie belge</td>
-	<td class="tbl" ><input name="sortie_be" type="text" value="<?php echo $row->sortie_be; ?>" size="15" maxlength="10">
+	<td class="tbl" ><input name="sortie_be" type="text" value="#SORTIE_BE" size="15" maxlength="10">
 aaaa-mm-jj</td>
 </tr>
 <tr>
 	<td class="tbl" >Sortie française</td>
-	<td class="tbl" ><input name="sortie_fr" type="text" value="<?php echo $row->sortie_fr; ?>" size="15" maxlength="10">
+	<td class="tbl" ><input name="sortie_fr" type="text" value="#SORTIE_FR" size="15" maxlength="10">
 aaaa-mm-jj</td>
 </tr>
 <tr>
 	<td class="tbl" >Réalisateur</td>
-	<td class="tbl" ><input name="realisateur" value="<?php echo $row->realisateur; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="realisateur" value="#REALISATEUR" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Pays</td>
-	<td class="tbl" ><input name="pays" value="<?php echo $row->pays; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="pays" value="[(#PAYS)]" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Durée</td>
-	<td class="tbl" ><input name="duree" value="<?php echo $row->duree; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="duree" value="#DUREE" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Budget</td>
-	<td class="tbl" ><input name="budget" value="<?php echo $row->budget; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="budget" value="#BUDGET" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Meilleurs scènes</td>
-	<td class="tbl" ><textarea name="scenes" rows="3" cols="25" class="trous"><?php echo $row->scenes; ?></textarea></td>
+	<td class="tbl" ><textarea name="scenes" rows="3" cols="25" class="trous">[(#SCENES)]</textarea></td>
 </tr>
 <tr>
 	<td class="tbl" >Scénariste</td>
-	<td class="tbl" ><textarea name="scenariste" rows="3" cols="25" class="trous"><?php echo $row->scenariste; ?></textarea></td>
+	<td class="tbl" ><textarea name="scenariste" rows="3" cols="25" class="trous">[(#SCENARISTE)]</textarea></td>
 </tr>
 <tr>
 	<td class="tbl" >Récompenses</td>
-	<td class="tbl" ><textarea name="recompenses" rows="3" cols="25" class="trous"><?php echo $row->recompenses; ?></textarea></td>
+	<td class="tbl" ><textarea name="recompenses" rows="3" cols="25" class="trous">[(#RECOMPENSES)]</textarea></td>
 </tr>
 <tr>
 	<td class="tbl" >Musique</td>
-	<td class="tbl" ><textarea name="musique" rows="3" cols="25" class="trous"><?php echo $row->musique; ?></textarea></td>
+	<td class="tbl" ><textarea name="musique" rows="3" cols="25" class="trous">[(#MUSIQUE)]</textarea></td>
 </tr>
 <tr>
 	<td class="tbl" >Bande annonce</td>
-	<td class="tbl" ><input name="annonce" value="<?php echo $row->annonce; ?>" class="trous" type="text"></td>
-</tr>
+	<td class="tbl" ><input name="annonce" value="[(#ANNONCE)]" class="trous" type="text"></tr>
 <tr>
 	<td class="tbl" >Amazon</td>
-	<td class="tbl" ><input name="sortie" value="<?php echo $row->sortie; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="sortie" value="[(#SORTIE)]" class="trous" type="text"></td>
 </tr>
 <tr>
 	<td class="tbl" >Genre</td>
-	<td class="tbl" ><input name="genre" value="<?php echo $row->genre; ?>" class="trous" type="text"></td>
+	<td class="tbl" ><input name="genre" value="[(#GENRE)]" class="trous" type="text"/></td>
 </tr>
 
 <tr>
 	<td class="tbl" >Casting</td>
-	<td class="tbl" ><textarea name="casting" rows="5" cols="25" class="trous"><?php echo $row->casting; ?></textarea></td>
+	<td class="tbl" ><textarea name="casting" rows="5" cols="25" class="trous">[(#CASTING)]</textarea></td>
 </tr>
 <tr>
 	<td class="tbl" >Synopsis</td>
-	<td class="tbl" ><textarea name="synopsis" rows="7" cols="25" class="trous"><?php echo unhtmlentities($row->synopsis); ?></textarea></td>
+	<td class="tbl" ><textarea name="synopsis" rows="7" cols="25" class="trous">[(#SYNOPSIS)]</textarea></td>
 </tr>
 
 <tr>
@@ -154,3 +110,4 @@ echo '<input type="checkbox" name="deleted" value="1" />Effacer l\'image';
 
 
 </form>
+</BOUCLE_film>
