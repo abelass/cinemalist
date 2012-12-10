@@ -109,11 +109,8 @@ $height_max = 900;    // Hauteur max de l'image en pixels
 {
 $logo = $_POST["oldlogo"]; 
 }
-//echo("UPDATE  spip_films SET title='".addslashes($_POST['title'])."' , title_VO='".addslashes($_POST['title_VO'])."' , annee='".addslashes($_POST['annee'])."' , realisateur='".addslashes($_POST['realisateur'])."' , pays='".addslashes($_POST['pays'])."' , dur&eacute;e='".addslashes($_POST['dur&eacute;e'])."' , production='".addslashes($_POST['production'])."' , distribution='".addslashes($_POST['distribution'])."' , scenariste='".addslashes($_POST['scenariste'])."' , photo='".addslashes($_POST['photo'])."' , musique='".addslashes($_POST['musique'])."' , montage='".addslashes($_POST['montage'])."' , sortie='".addslashes($_POST['sortie'])."' , genre='".addslashes($_POST['genre'])."' , casting='".addslashes($_POST['casting'])."' , scenario='".addslashes($_POST['scenario'])."' , logo='".$logo."' where id_film like '".$_GET["id_film"]."';");
 
-$url='film'._request('id_film').'-'._request('title');
-				
-
+			
 $valeurs=array(
 	'title'=>_request('title'),
 	'title_VO'=>_request('title_VO'),	
@@ -146,6 +143,6 @@ $valeurs=array(
 echo "<p>Le film \"<strong><a href='?exec=cinetic&comm=edit&id_film=".$_GET["id_film"]."'>".$_POST['title']."</a></strong>\" a correctement &eacute;t&eacute; modifi&eacute;</p><p><a href='?exec=cinemalist'>>> Retour &agrave; la liste des films<a/></p>";
 
     include_spip('inc/invalideur');
-    suivre_invalideur("id='id_forum/a$id_article'");
+    suivre_invalideur("id='id_forum/a$id_forum'");
 }
 ?>
