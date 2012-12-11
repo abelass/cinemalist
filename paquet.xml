@@ -5,7 +5,7 @@
 	etat="test"
 	compatibilite="[3.0.5;3.0.*]"
 	logo="prive/themes/spip/images/video-x-generic.png"
-	schema="0.2.9" 
+	schema="0.3.8" 
 >
 	<nom>CinemaList</nom>
 
@@ -15,13 +15,17 @@
 
 	<licence>GNU/GPL</licence>
 	
+	<necessite nom="saisies" compatibilite="[1.24.0;]" /> 
+	<necessite nom="pays" compatibilite="[2.1.1;]" /> 	
+	
 	<pipeline nom="autoriser" inclure="cinemalist_autorisations.php" /> 
 	
 	<pipeline nom="affiche_milieu" inclure="cinemalist_pipelines.php" /> 
 	<pipeline nom="declarer_tables_interfaces" inclure="base/cinemalist.php" /> 
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/cinemalist.php" /> 
 	<pipeline nom="declarer_tables_principales" inclure="base/cinemalist.php" /> 	
-	<pipeline nom="declarer_tables_auxiliaires" inclure="base/cinemalist.php" /> 	
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/cinemalist.php" />
+	<pipeline nom="optimiser_base_disparus" inclure="cinemalist_pipelines.php" /> 	
 	
 
 

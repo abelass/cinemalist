@@ -1,16 +1,21 @@
+[(#BOITE_OUVRIR{
+''
+,simple fiche_objet})]
+
+
 <BOUCLE_Lefilm(FILMS){id_film}>
 <div style="height: 40px;" ><br />
-#PUCE&nbsp;<a href="[(#URL_ECRIRE{cinetic,comm=edit&id_film=#ID_FILM,&})]" >Retour à la fiche de ce film</a><br />
+#PUCE&nbsp;<a href="[(#URL_ECRIRE{film,id_film=#ID_FILM})]" >Retour à la fiche de ce film</a><br />
 </div>
 
 	<h4>#TITLE <em>(#TITLE_VO)</em></h4>
-	[(#EVAL{1}|debut_cadre_formulaire{1})]
+<div class="formulaire_spip">
 		<h5>Les acteurs</h5>
 		<B_LesAuteursDuFilm>
 		<ul>
 			<BOUCLE_LesAuteursDuFilm(ACTEURS_MOVIES){id_film}>
 				<BOUCLE_LActeur(ACTEURS){id_acteur = #ID_ACTEUR}{doublons acteurs}>
-					<li>#NOM<span class="delier_acteur"><a href="[(#URL_ECRIRE{cinemalist_liaison,delier_acteur_movie=oui&id_film=#ID_FILM&id_acteur=#ID_ACTEUR, &})]">Delier</a></span></li>
+					<li>#NOM<span class="delier_acteur"><a href="[(#URL_ECRIRE{cinemalist_liaison,delier_acteur_movie=oui&id_film=#ID_FILM&id_acteur=#ID_ACTEUR, &})]"> Delier</a></span></li>
 				</BOUCLE_LActeur>
 			</BOUCLE_LesAuteursDuFilm>
 		</ul>
@@ -26,9 +31,8 @@
 			</select><br />
 			<input type="submit" name="lier_acteur_movie" value="Lier cet acteur à ce film" />
 		</form>
-	[(#EVAL{1}|fin_cadre_formulaire)]
-	<br />
-	[(#EVAL{1}|debut_cadre_formulaire{1})]
+</div>
+<div class="formulaire_spip">
 		<h5>Les sc&eacute;naristes</h5>
 		<B_LesScenaristesDuFilm>
 		<ul>
@@ -50,9 +54,8 @@
 			</select><br />
 			<input type="submit" name="lier_scenariste_movie" value="Lier ce scenariste à ce film" />
 		</form>
-	[(#EVAL{1}|fin_cadre_formulaire)]
-	<br />
-	[(#EVAL{1}|debut_cadre_formulaire{1})]
+</div>
+<div class="formulaire_spip">
 		<h5>Les realisateurs</h5>
 		<B_LesRealisateursDuFilm>
 		<ul>
@@ -74,7 +77,8 @@
 			</select><br />
 			<input type="submit" name="lier_realisateur_movie" value="Lier cet realisateur à ce film" />
 		</form>
-	[(#EVAL{1}|fin_cadre_formulaire)]
+</div>
 	
 
 </BOUCLE_Lefilm>
+#BOITE_FERMER

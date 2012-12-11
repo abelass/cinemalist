@@ -28,7 +28,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_logo' => 'Logo',
 	'label_nationalite' => 'Nationalite',
 	'label_nom' => 'Nom',
-	'label_url' => 'Url',
 
 	// R
 	'retirer_lien_realisateur' => 'Retirer ce realisateur',

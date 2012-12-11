@@ -1,0 +1,30 @@
+[(#ID_OBJET|oui)
+	[(#AUTORISER{modifier,scenariste,#ID_SCENARISTE}|sinon_interdire_acces)]
+][(#ID_OBJET|non)
+	[(#AUTORISER{creer,scenariste}|sinon_interdire_acces)]
+]
+ 
+#SET{redirect,#ENV{redirect}|sinon{#ID_SCENARISTE|?{#ID_SCENARISTE|generer_url_entite{scenariste},#URL_ECRIRE{scenaristes}}}}
+
+<div class='cadre-formulaire-editer'>
+<div class="entete-formulaire">
+	[(#ID_SCENARISTE|oui)
+	[(#GET{redirect}|icone_verticale{Retour,scenariste,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_SCENARISTE|?{<:scenariste:icone_modifier_scenariste:>,<:scenariste:icone_creer_scenariste:>})]
+		<h1>(#ENV{titre,#INFO_NOM{scenariste,#ID_SCENARISTE}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_SCENARISTE|generer_url_entite{scenariste}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_SCENARISTE{#ENV{id_scenariste,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

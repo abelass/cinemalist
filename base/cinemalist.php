@@ -170,8 +170,8 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "title"              => "varchar(150) NOT NULL",
             "title_vo"           => "varchar(150) NOT NULL",
             "annee"              => "varchar(10) NOT NULL",
-            "sortie_be"          => "date NOT NULL",
-            "sortie_fr"          => "date NOT NULL",
+            "sortie_be"          => "date DEFAULT NULL",
+            "sortie_fr"          => "date DEFAULT NULL",
             "realisateur"        => "varchar(250) NOT NULL",
             "pays"               => "varchar(100) NOT NULL",
             "duree"              => "varchar(50) NOT NULL",
@@ -186,7 +186,6 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "casting"            => "mediumtext NOT NULL",
             "synopsis"           => "longtext NOT NULL",
             "logo"               => "varchar(250) NOT NULL",
-            "url"                => "varchar(250) NOT NULL",
             "date"               => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
             "maj"                => "TIMESTAMP"
@@ -200,7 +199,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
         'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
         'rechercher_champs' => array("title" => 8, "title_vo" => 8, "annee" => 2, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 4, "genre" => 4, "casting" => 4, "synopsis" => 4),
-        'tables_jointures'  => array(),
+        'tables_jointures'  => array('spip_films_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
             'prop'     => 'texte_statut_propose_evaluation',
@@ -234,7 +233,6 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "date_mort"          => "datetime NOT NULL",
             "logo"               => "varchar(255) NOT NULL",
             "date_maj"           => "datetime NOT NULL",
-            "url"                => "varchar(250) NOT NULL",
             "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
             "maj"                => "TIMESTAMP"
@@ -248,7 +246,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'champs_versionnes' => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
-        'tables_jointures'  => array(),
+        'tables_jointures'  => array('spip_acteurs_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
             'prop'     => 'texte_statut_propose_evaluation',
@@ -282,7 +280,6 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "logo"               => "varchar(255) NOT NULL",
             "nationalite"        => "varchar(5) NOT NULL",
             "date_maj"           => "datetime NOT NULL",
-            "url"                => "varchar(250) NOT NULL",
             "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
             "maj"                => "TIMESTAMP"
@@ -296,7 +293,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'champs_editables'  => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
         'champs_versionnes' => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
         'rechercher_champs' => array("nom" => 8, "date_naissance" => 2, "date_mort" => 2),
-        'tables_jointures'  => array(),
+        'tables_jointures'  => array('spip_realisateurs_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
             'prop'     => 'texte_statut_propose_evaluation',
@@ -330,7 +327,6 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "date_mort"          => "datetime NOT NULL",
             "logo"               => "varchar(255) NOT NULL",
             "date_maj"           => "datetime NOT NULL",
-            "url"                => "varchar(250) NOT NULL",
             "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
             "maj"                => "TIMESTAMP"
@@ -344,7 +340,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'champs_versionnes' => array('nom', 'descriptif', 'date_naissance', 'date_mort'),
         'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
-        'tables_jointures'  => array(),
+        'tables_jointures'  => array('spip_scenaristes_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
             'prop'     => 'texte_statut_propose_evaluation',
@@ -373,14 +369,14 @@ function cinemalist_declarer_tables_interfaces($tables_interfaces){
 
     $tables_interfaces['table_des_tables']['films'] = 'films';  
     $tables_interfaces['table_des_tables']['acteurs'] = 'acteurs';  
-    $tables_interfaces['table_des_tables']['acteurs_movies'] = 'acteurs_movies';        
     $tables_interfaces['table_des_tables']['scenaristes'] = 'scenaristes';  
-    $tables_interfaces['table_des_tables']['scenaristes_movies'] = 'scenaristes_movies';
     $tables_interfaces['table_des_tables']['realisateurs'] = 'realisateurs';    
-    $tables_interfaces['table_des_tables']['realisateurs_movies'] = 'realisateurs_movies';  
-    $tables_interfaces['table_des_tables']['geo_pays'] = 'geo_pays';
     $tables_interfaces['table_des_tables']['commentaires_film'] = 'commentaires_film';
-    $tables_interfaces['table_des_tables']['lien_film_article'] = 'lien_film_article';
+
+    
+    $tables_interfaces['tables_jointures']['spip_articles'][] = 'spip_articles_liens';
+
+    
             
     // Titre pour url
     /*$tables_interfaces['table_titre']['films'] = "url as titre, 'title' AS lang";    
@@ -391,82 +387,72 @@ function cinemalist_declarer_tables_interfaces($tables_interfaces){
     return $tables_interfaces;
 }
 
-function cinemalist_declarer_tables_auxiliaires($tables_auxiliaires){
-
-    $spip_acteurs_movies = array(
-        "id_film"       => "bigint(21) NOT NULL",
-        "id_auteur"     => "bigint(21) NOT NULL",
-        );
-
-    $spip_acteurs_movies_key = array(
-        "PRIMARY KEY"       => "id_film,id_auteur",
-        );  
-            
+function cinemalist_declarer_tables_auxiliaires($tables){
     
-    $tables_auxiliaires['spip_acteurs_movies'] = array(
-        'field' => &$spip_acteurs_movies,
-        'key' => &$spip_acteurs_movies_key,
+   $tables['spip_acteurs_liens'] = array(
+        'field' => array(
+            "id_acteur"          => "bigint(21) DEFAULT '0' NOT NULL",
+            "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+            "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+            "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_acteur,id_objet,objet",
+            "KEY id_acteur"      => "id_acteur"
+        )
     );
-            
-    $spip_scenaristes_movies = array(
-        "id_film"       => "bigint(21) NOT NULL",
-        "id_scenariste"     => "bigint(21) NOT NULL",
-        );
+    $tables['spip_realisateurs_liens'] = array(
+        'field' => array(
+            "id_realisateur"     => "bigint(21) DEFAULT '0' NOT NULL",
+            "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+            "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+            "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_realisateur,id_objet,objet",
+            "KEY id_realisateur" => "id_realisateur"
+        )
+    );
+    $tables['spip_scenaristes_liens'] = array(
+        'field' => array(
+            "id_scenariste"      => "bigint(21) DEFAULT '0' NOT NULL",
+            "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+            "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+            "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_scenariste,id_objet,objet",
+            "KEY id_scenariste"  => "id_scenariste"
+        )
+    );
 
-    $spip_scenaristes_movies_key = array(
-        "PRIMARY KEY"       => "id_film,id_scenariste",
-        );  
-            
-    
-    $tables_auxiliaires['spip_scenaristes_movies'] = array(
-        'field' => &$spip_scenaristes_movies,
-        'key' => &$spip_scenaristes_movies_key,
-    );          
-    
-    $spip_realisateurs_movies= array(
-        "id_film"       => "bigint(21) NOT NULL",
-        "id_realisateur"        => "bigint(21) NOT NULL",
-        );
-
-    $spip_realisateurs_movies_key = array(
-        "PRIMARY KEY"       => "id_film,id_realisateur",
-        );  
-            
-    
-    $tables_auxiliaires['spip_realisateurs_movies'] = array(
-        'field' => &$spip_realisateurs_movies,
-        'key' => &$spip_realisateurs_movies_key,
+    $tables['spip_scenaristes_liens'] = array(
+        'field' => array(
+            "id_scenariste"      => "bigint(21) DEFAULT '0' NOT NULL",
+            "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+            "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+            "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_scenariste,id_objet,objet",
+            "KEY id_scenariste"  => "id_scenariste"
+        )
     );
     
-    $spip_geo_pays= array(
-        "id_pays "          => "bigint(21) NOT NULL",
-        );
 
-    $spip_geo_pays_key = array(
-        "PRIMARY KEY"       => "id_pays",
-        );  
-            
-    $tables_auxiliaires['spip_geo_pays'] = array(
-        'field' => &$spip_geo_pays,
-        'key' => &$spip_geo_pays_key,
+    
+    $tables['spip_films_liens'] = array(
+        'field' => array(
+            "id_article"      => "bigint(21) DEFAULT '0' NOT NULL",
+            "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+            "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+            "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_article,id_objet,objet",
+            "KEY id_scenariste"  => "id_article"
+        )
     );
-        
-    $spip_lien_film_article= array(
-        "id"            => "bigint(21) NOT NULL",
-        "id_article"        => "bigint(21) NOT NULL",
-        "id_film"       => "bigint(21) NOT NULL",               
-        );
-
-    $spip_lien_film_article_key = array(
-        "PRIMARY KEY"       => "id",
-        "KEY id_article"    => "id_article",
-        "KEY id_film"       => "id_film",   
-        );  
-            
-    $tables_auxiliaires['spip_lien_film_article'] = array(
-        'field' => &$spip_lien_film_article,
-        'key' => &$spip_lien_film_article_key,
-    );      
-return $tables_auxiliaires;
+return $tables;
 };
 ?>

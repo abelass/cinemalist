@@ -1,0 +1,72 @@
+[(#SET{defaut_tri,#ARRAY{
+	multi title,1,
+	date,-1, 
+	id_film,1
+}})
+]
+#SET{exclus,#ENV**{exclus,#ENV{objet_source}|lister_objets_lies{#ENV{objet},#ENV{id_objet},#ENV{_objet_lien}}}}
+#SET{debut,#ENV{debutfila,#EVAL{_request("debutfila");}}}
+<B_liste_films>
+[(#REM) En cas de pagination indirecte @32, il faut refaire le set car la boucle
+a mis a jour la valeur avec la page reelle]
+#SET{debut,#ENV{debutfila,#EVAL{_request("debutfila");}}}
+#SET{afficher_lettres,#TRI|=={'multi title'}|oui}
+#ANCRE_PAGINATION
+<div class="liste-objets liste-objets-associer films">
+<table class='spip liste'>
+[<caption><span class="caption"><strong>(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{film:info_1_film,film:info_nb_films}})</strong>
+<span class="recherche">
+	<label for="recherche-#ENV{id}"><:info_rechercher_02:></label>
+	<input type="text" class="recherche" name="recherche" id="recherche-#ENV{id}" value="#ENV{recherche}" />
+	<input type="submit" class="tout_voir" name="tout_voir" value="<:info_tout_afficher:>" />
+</span>
+</span>
+</caption>]
+	<thead>
+		#SET{p,''}
+		<BOUCLE_lettre(FILMS){tout}{!id_film IN #GET{exclus}}{where?}{recherche?}{statut?}
+			{tri #ENV{par,multi title},#GET{defaut_tri}}{id_film==#GET{afficher_lettres}|?{'.*','A'}}>[
+		(#TITLE**|extraire_multi|initiale|unique|oui)
+		[(#SET{p,#GET{p}|concat{
+		#SELF|parametre_url{debutfila,@#ID_FILM}|ancre_url{paginationfila}|afficher_initiale{#TITLE**|extraire_multi|initiale{},#COMPTEUR_BOUCLE,#GET{debut},#ENV{nb,10}}
+		}})]
+		]#SAUTER{#ENV{nb,10}|moins{#COMPTEUR_BOUCLE|=={1}|?{2,1}}}</BOUCLE_lettre>[
+		(#SET{p,
+			#GET{p}|concat{
+				#REM|afficher_initiale{#REM,#TOTAL_BOUCLE,#GET{debut},#ENV{nb,10}}
+			}
+		})]</B_lettre>
+		[<tr><td colspan="3"><p class='pagination'>(#GET{p})</p></td></tr>]
+	
+		<tr class='first_row'>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='title' scope='col'>[(#TRI{multi title,<:film:label_title:>,ajax})]</th>
+			<th class='action' scope='col'></th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_films(FILMS){!id_film IN #GET{exclus}}{where?}{recherche?}{statut?}
+		{tri #ENV{par,multi title},#GET{defaut_tri}}{pagination #ENV{nb,10} fila}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#TITLE**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)]">
+			<td class='statut'>[(#STATUT|puce_statut{film})]</td> 
+			<td class='title'>[(#LOGO_FILM|image_reduire{20,20})]<a href="[(#ID_FILM|generer_url_entite{film})]">#TITLE</a></td>
+			<td class='action'>
+				<button class="button link add" name="ajouter_lien\[film-#ID_FILM-#OBJET-#ID_OBJET\]" value="+"><:film:ajouter_lien_film:> [(#CHEMIN_IMAGE{ajouter-12.png}|balise_img{'+'})]</button>
+			</td>
+		</tr>
+	</BOUCLE_liste_films>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_films>[(#ENV{recherche}|oui)
+<div class="liste-objets liste-objets-associer films caption-wrap">
+<span class="caption"><strong>[(#VAL{info_recherche_auteur_zero}|_T{#ARRAY{cherche_auteur,#ENV{recherche}}})]</strong>
+<span class="recherche">
+	<label for="recherche-#ENV{id}"><:info_rechercher_02:></label>
+	<input type="text" class="recherche" name="recherche" id="recherche-#ENV{id}" value="#ENV{recherche}" />
+	<input type="submit" class="tout_voir" name="tout_voir" value="<:info_tout_afficher:>" />
+</span>
+</span>
+</div>
+]<//B_liste_films>

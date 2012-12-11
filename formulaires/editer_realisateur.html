@@ -11,7 +11,7 @@
 			[(#SAISIE{input, nom,
 				label=<:realisateur:label_nom:>})]
 
-			[(#SAISIE{input, date_naissance,
+			[(#SAISIE{date, date_naissance,
 				label=<:realisateur:label_date_naissance:>})]
 
 			[(#SAISIE{input, date_mort,
@@ -21,13 +21,8 @@
 				label=<:realisateur:label_descriptif:>,
 				explication=<:realisateur:explication_descriptif:> })]
 
-             <li>
-                  <label for="nom">Nationalite</label>
-                    <select name="nationalite" class="forml" >
-                        <option value="0">S&eacute;lectionnez un pays</option>
-                        <INCLURE{fond=formulaires/inc-pays,nationalite}/>
-                    </select>
-                </li>   
+			[(#SAISIE{pays, nationalite,
+				label=<:realisateur:label_nationalite:>})]
 
 		</ul>
 		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]

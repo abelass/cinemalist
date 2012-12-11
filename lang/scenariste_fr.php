@@ -25,7 +25,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_logo' => 'Logo',
 	'label_nationalite' => 'Nationalité',
 	'label_nom' => 'Nom',
-	'label_url' => 'Url',
 
 	// R
 	'retirer_lien_scenariste' => 'Retirer ce scenariste',

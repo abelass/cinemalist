@@ -11,6 +11,8 @@
 			[(#SAISIE{input, nom,
 				label=<:scenariste:label_nom:>})]
 
+			[(#SAISIE{pays, nationalite,
+				label=<:scenariste:label_nationalite:>})]
 
 			[(#SAISIE{textarea, descriptif,
 				label=<:scenariste:label_descriptif:>})]
@@ -20,14 +22,7 @@
 
 			[(#SAISIE{input, date_mort,
 				label=<:scenariste:label_date_mort:>})]
-				
-             <li>
-                  <label for="nom">Nationalite</label>
-                    <select name="nationalite" class="forml" >
-                        <option value="0">S&eacute;lectionnez un pays</option>
-                        <INCLURE{fond=formulaires/inc-pays,nationalite}/>
-                    </select>
-                </li>   
+
 		</ul>
 		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
 		<!--extra-->

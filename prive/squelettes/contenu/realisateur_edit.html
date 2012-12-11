@@ -1,0 +1,30 @@
+[(#ID_OBJET|oui)
+	[(#AUTORISER{modifier,realisateur,#ID_REALISATEUR}|sinon_interdire_acces)]
+][(#ID_OBJET|non)
+	[(#AUTORISER{creer,realisateur}|sinon_interdire_acces)]
+]
+ 
+#SET{redirect,#ENV{redirect}|sinon{#ID_REALISATEUR|?{#ID_REALISATEUR|generer_url_entite{realisateur},#URL_ECRIRE{realisateurs}}}}
+
+<div class='cadre-formulaire-editer'>
+<div class="entete-formulaire">
+	[(#ID_REALISATEUR|oui)
+	[(#GET{redirect}|icone_verticale{Retour,realisateur,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_REALISATEUR|?{<:realisateur:icone_modifier_realisateur:>,<:realisateur:icone_creer_realisateur:>})]
+		<h1>(#ENV{titre,#INFO_NOM{realisateur,#ID_REALISATEUR}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_REALISATEUR|generer_url_entite{realisateur}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_REALISATEUR{#ENV{id_realisateur,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

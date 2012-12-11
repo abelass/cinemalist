@@ -41,7 +41,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_synopsis' => 'Synopsis',
 	'label_title' => 'Titre du Film',
 	'label_title_vo' => 'Titre en Vo',
-	'label_url' => 'Url',
 
 	// R
 	'retirer_lien_film' => 'Retirer ce film',

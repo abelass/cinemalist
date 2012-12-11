@@ -1,0 +1,63 @@
+[(#SET{defaut_tri,#ARRAY{
+	multi titre,1,
+	date_maj,-1, 
+	id_article,1
+}})
+]
+#SET{selection,#ENV**{selection,#ENV{objet_source}|lister_objets_lies{#ENV{objet},#ENV{id_objet},#ENV{_objet_lien}}}}
+#SET{debut,#ENV{debutactl,#EVAL{_request("debutactl");}}}
+<B_liste_articles>
+[(#REM) En cas de pagination indirecte @32, il faut refaire le set car la boucle
+a mis a jour la valeur avec la page reelle]
+#SET{debut,#ENV{debutactl,#EVAL{_request("debutactl");}}}
+#SET{afficher_lettres,#TRI|=={'multi titre'}|oui}
+#ANCRE_PAGINATION
+<div class="liste-objets liste-objets-lies articles">
+<table class='spip liste'>
+[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{article:info_1_article,article:info_nb_articles}})</strong></caption>]
+	<thead>
+		#SET{p,''}
+		<BOUCLE_lettre(ARTICLES){tout}{id_article IN #GET{selection}}{where?}{statut?}
+			{tri #ENV{par,multi titre},#GET{defaut_tri}}{id_article==#GET{afficher_lettres}|?{'.*','A'}}>[
+		(#TITRE**|extraire_multi|initiale|unique|oui)
+		[(#SET{p,#GET{p}|concat{
+		#SELF|parametre_url{debutactl,@#ID_article}|ancre_url{paginationactl}|afficher_initiale{#titre**|extraire_multi|initiale{},#COMPTEUR_BOUCLE,#GET{debut},#ENV{nb,10}}
+		}})]
+		]#SAUTER{#ENV{nb,10}|moins{#COMPTEUR_BOUCLE|=={1}|?{2,1}}}</BOUCLE_lettre>[
+		(#SET{p,
+			#GET{p}|concat{
+				#REM|afficher_initiale{#REM,#TOTAL_BOUCLE,#GET{debut},#ENV{nb,10}}
+			}
+		})]</B_lettre>
+		[<tr><td colspan="4"><p class='pagination'>(#GET{p})</p></td></tr>]
+
+		<tr class='first_row'>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='titre' scope='col'>[(#TRI{multi titre,<:article:label_titre:>,ajax})]</th>
+			<th class='action' scope='col'></th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_articles(ARTICLES){id_article IN #GET{selection}}{statut?}
+		{tri #ENV{par,multi titre},#GET{defaut_tri}}{pagination #ENV{nb,10} actl}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#titre**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)][(#ID_ARTICLE|=={#ENV{id_lien_ajoute}}|oui)append]">
+			<td class='statut'>[(#STATUT|puce_statut{article})]</td> 
+			<td class='titre'>[(#LOGO_ARTICLE|image_reduire{20,20})]<a href="[(#ID_ARTICLE|generer_url_entite{article})]">#TITRE</a></td>
+
+			<td class='action'>
+				[(#ENV{editable}|oui)
+					<button class="button link delete" name="supprimer_lien\[article-#ID_ARTICLE-#OBJET-#ID_OBJET\]" value="X"><:article:retirer_lien_article:> [(#CHEMIN_IMAGE{supprimer-12.png}|balise_img{'X'})]</button>
+				]
+			</td>
+		</tr>
+	</BOUCLE_liste_articles>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+[(#GRAND_TOTAL|>{3}|oui)<div class="action"><button class="button link" name="supprimer_lien\[article-*-#OBJET-#ID_OBJET\]" value="X"><:article:retirer_tous_liens_articles:> [(#CHEMIN_IMAGE{supprimer-8.png}|balise_img{'X'})]</button></div>]
+</div>
+</B_liste_articles>
+<div class="liste-objets liste-objets-lies ARTICLES caption-wrap">
+	<strong class="caption">[(#ENV*{titre,<:article:info_aucun_article:>})]</strong>
+</div>
+<//B_liste_articles>
