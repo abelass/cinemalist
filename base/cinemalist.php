@@ -7,7 +7,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function cinemalist_declarer_tables_principales($tables_principales){
 	
 		
-	$films = array(
+	/*$films = array(
 		"id_film" 		=> "int(10) NOT NULL",
 		"title" 		=> "varchar(150) NOT NULL",		
 		"title_VO" 		=> "varchar(150) NOT NULL",
@@ -121,7 +121,7 @@ function cinemalist_declarer_tables_principales($tables_principales){
 	$tables_principales['spip_realisateurs'] = array(
 		'field' => &$spip_realisateurs,
 		'key' => &$spip_realisateurs_key,
-		'join' => &$spip_realisateurs_join);
+		'join' => &$spip_realisateurs_join);*/
 					
 	$spip_commentaires_film = array(
 		"id_commentaire_film " 	=> "int(20) NOT NULL",
@@ -157,9 +157,220 @@ function cinemalist_declarer_tables_principales($tables_principales){
 	
 	}
 
+/**
+ * Déclaration des objets éditoriaux
+ */
+function cinemalist_declarer_tables_objets_sql($tables) {
+
+    $tables['spip_films'] = array(
+        'type' => 'film',
+        'principale' => "oui",
+        'field'=> array(
+            "id_film"            => "bigint(21) NOT NULL",
+            "title"              => "varchar(150) NOT NULL",
+            "title_vo"           => "varchar(150) NOT NULL",
+            "annee"              => "varchar(10) NOT NULL",
+            "sortie_be"          => "date NOT NULL",
+            "sortie_fr"          => "date NOT NULL",
+            "realisateur"        => "varchar(250) NOT NULL",
+            "pays"               => "varchar(100) NOT NULL",
+            "duree"              => "varchar(50) NOT NULL",
+            "budget"             => "varchar(150) NOT NULL",
+            "scenes"             => "mediumtext NOT NULL",
+            "scenariste"         => "tinytext NOT NULL",
+            "recompenses"        => "mediumtext NOT NULL",
+            "musique"            => "tinytext NOT NULL",
+            "annonce"            => "varchar(200) NOT NULL",
+            "sortie"             => "varchar(200) NOT NULL",
+            "genre"              => "varchar(100) NOT NULL",
+            "casting"            => "mediumtext NOT NULL",
+            "synopsis"           => "longtext NOT NULL",
+            "logo"               => "varchar(250) NOT NULL",
+            "url"                => "varchar(250) NOT NULL",
+            "date"               => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
+            "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
+            "maj"                => "TIMESTAMP"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_film",
+            "KEY statut"         => "statut", 
+        ),
+        'titre' => "title AS titre, '' AS lang",
+        'date' => "date",
+        'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
+        'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
+        'rechercher_champs' => array("title" => 8, "title_vo" => 8, "annee" => 2, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 4, "genre" => 4, "casting" => 4, "synopsis" => 4),
+        'tables_jointures'  => array(),
+        'statut_textes_instituer' => array(
+            'prepa'    => 'texte_statut_en_cours_redaction',
+            'prop'     => 'texte_statut_propose_evaluation',
+            'publie'   => 'texte_statut_publie',
+            'refuse'   => 'texte_statut_refuse',
+            'poubelle' => 'texte_statut_poubelle',
+        ),
+        'statut'=> array(
+            array(
+                'champ'     => 'statut',
+                'publie'    => 'publie',
+                'previsu'   => 'publie,prop,prepa',
+                'post_date' => 'date', 
+                'exception' => array('statut','tout')
+            )
+        ),
+        'texte_changer_statut' => 'film:texte_changer_statut_film', 
+        
+
+    );
+
+    $tables['spip_acteurs'] = array(
+        'type' => 'acteur',
+        'principale' => "oui",
+        'field'=> array(
+            "id_acteur"          => "bigint(21) NOT NULL",
+            "nom"                => "tinytext NOT NULL",
+            "nationalite"        => "varchar(5) NOT NULL",
+            "descriptif"         => "text NOT NULL",
+            "date_naissance"     => "datetime NOT NULL",
+            "date_mort"          => "datetime NOT NULL",
+            "logo"               => "varchar(255) NOT NULL",
+            "date_maj"           => "datetime NOT NULL",
+            "url"                => "varchar(250) NOT NULL",
+            "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
+            "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
+            "maj"                => "TIMESTAMP"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_acteur",
+            "KEY statut"         => "statut", 
+        ),
+        'titre' => "nom AS titre, '' AS lang",
+        'date' => "date_maj",
+        'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
+        'champs_versionnes' => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
+        'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
+        'tables_jointures'  => array(),
+        'statut_textes_instituer' => array(
+            'prepa'    => 'texte_statut_en_cours_redaction',
+            'prop'     => 'texte_statut_propose_evaluation',
+            'publie'   => 'texte_statut_publie',
+            'refuse'   => 'texte_statut_refuse',
+            'poubelle' => 'texte_statut_poubelle',
+        ),
+        'statut'=> array(
+            array(
+                'champ'     => 'statut',
+                'publie'    => 'publie',
+                'previsu'   => 'publie,prop,prepa',
+                'post_date' => 'date', 
+                'exception' => array('statut','tout')
+            )
+        ),
+        'texte_changer_statut' => 'acteur:texte_changer_statut_acteur', 
+        
+
+    );
+
+    $tables['spip_realisateurs'] = array(
+        'type' => 'realisateur',
+        'principale' => "oui",
+        'field'=> array(
+            "id_realisateur"     => "bigint(21) NOT NULL",
+            "nom"                => "tinytext NOT NULL",
+            "date_naissance"     => "datetime NOT NULL",
+            "date_mort"          => "datetime NOT NULL",
+            "descriptif"         => "text NOT NULL",
+            "logo"               => "varchar(255) NOT NULL",
+            "nationalite"        => "varchar(5) NOT NULL",
+            "date_maj"           => "datetime NOT NULL",
+            "url"                => "varchar(250) NOT NULL",
+            "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
+            "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
+            "maj"                => "TIMESTAMP"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_realisateur",
+            "KEY statut"         => "statut", 
+        ),
+        'titre' => "nom AS titre, '' AS lang",
+        'date' => "date_maj",
+        'champs_editables'  => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
+        'champs_versionnes' => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
+        'rechercher_champs' => array("nom" => 8, "date_naissance" => 2, "date_mort" => 2),
+        'tables_jointures'  => array(),
+        'statut_textes_instituer' => array(
+            'prepa'    => 'texte_statut_en_cours_redaction',
+            'prop'     => 'texte_statut_propose_evaluation',
+            'publie'   => 'texte_statut_publie',
+            'refuse'   => 'texte_statut_refuse',
+            'poubelle' => 'texte_statut_poubelle',
+        ),
+        'statut'=> array(
+            array(
+                'champ'     => 'statut',
+                'publie'    => 'publie',
+                'previsu'   => 'publie,prop,prepa',
+                'post_date' => 'date', 
+                'exception' => array('statut','tout')
+            )
+        ),
+        'texte_changer_statut' => 'realisateur:texte_changer_statut_realisateur', 
+        
+
+    );
+
+    $tables['spip_scenaristes'] = array(
+        'type' => 'scenariste',
+        'principale' => "oui",
+        'field'=> array(
+            "id_scenariste"      => "bigint(21) NOT NULL",
+            "nom"                => "tinytext NOT NULL",
+            "nationalite"        => "varchar(5) NOT NULL",
+            "descriptif"         => "text NOT NULL",
+            "date_naissance"     => "datetime NOT NULL",
+            "date_mort"          => "datetime NOT NULL",
+            "logo"               => "varchar(255) NOT NULL",
+            "date_maj"           => "datetime NOT NULL",
+            "url"                => "varchar(250) NOT NULL",
+            "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
+            "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
+            "maj"                => "TIMESTAMP"
+        ),
+        'key' => array(
+            "PRIMARY KEY"        => "id_scenariste",
+            "KEY statut"         => "statut", 
+        ),
+        'titre' => "nom AS titre, '' AS lang",
+        'date' => "date_maj",
+        'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
+        'champs_versionnes' => array('nom', 'descriptif', 'date_naissance', 'date_mort'),
+        'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
+        'tables_jointures'  => array(),
+        'statut_textes_instituer' => array(
+            'prepa'    => 'texte_statut_en_cours_redaction',
+            'prop'     => 'texte_statut_propose_evaluation',
+            'publie'   => 'texte_statut_publie',
+            'refuse'   => 'texte_statut_refuse',
+            'poubelle' => 'texte_statut_poubelle',
+        ),
+        'statut'=> array(
+            array(
+                'champ'     => 'statut',
+                'publie'    => 'publie',
+                'previsu'   => 'publie,prop,prepa',
+                'post_date' => 'date', 
+                'exception' => array('statut','tout')
+            )
+        ),
+        'texte_changer_statut' => 'scenariste:texte_changer_statut_scenariste', 
+        
+
+    );
+
+    return $tables;
+}
+
 function cinemalist_declarer_tables_interfaces($tables_interfaces){
 
-    $tables_interfaces['table_des_tables']['spip_films'] = 'spip_films';
     $tables_interfaces['table_des_tables']['films'] = 'films';  
     $tables_interfaces['table_des_tables']['acteurs'] = 'acteurs';  
     $tables_interfaces['table_des_tables']['acteurs_movies'] = 'acteurs_movies';        
@@ -172,10 +383,9 @@ function cinemalist_declarer_tables_interfaces($tables_interfaces){
     $tables_interfaces['table_des_tables']['lien_film_article'] = 'lien_film_article';
             
     // Titre pour url
-    $tables_interfaces['table_titre']['acteurs']= "url AS titre, '' AS lang";   
-    $tables_interfaces['table_titre']['films'] = "url as titre, '' AS lang";    
+    /*$tables_interfaces['table_titre']['films'] = "url as titre, 'title' AS lang";    
     $tables_interfaces['table_titre']['realisateurs'] = "url AS titre, '' AS lang";  
-    $tables_interfaces['table_titre']['scenaristes'] = "url  AS titre, '' AS lang"; 
+    $tables_interfaces['table_titre']['scenaristes'] = "url  AS titre, '' AS lang"; */
 
                         
     return $tables_interfaces;

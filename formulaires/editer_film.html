@@ -1,0 +1,73 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_film,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_film' value='#ENV{id_film}' />
+		<ul>
+
+			[(#SAISIE{input, title, obligatoire=oui,
+				label=<:film:label_title:>})]
+
+			[(#SAISIE{input, title_vo,
+				label=<:film:label_title_vo:>})]
+
+			[(#SAISIE{input, annee,
+				label=<:film:label_annee:>})]
+
+			[(#SAISIE{input, sortie_be,
+				label=<:film:label_sortie_be:>,
+				explication=<:film:explication_sortie_be:> })]
+
+			[(#SAISIE{input, sortie_fr,
+				label=<:film:label_sortie_fr:>,
+				explication=<:film:explication_sortie_fr:> })]
+
+			[(#SAISIE{input, realisateur,
+				label=<:film:label_realisateur:>})]
+
+			[(#SAISIE{input, pays,
+				label=<:film:label_pays:>})]
+
+			[(#SAISIE{input, duree,
+				label=<:film:label_duree:>})]
+
+			[(#SAISIE{input, budget,
+				label=<:film:label_budget:>})]
+
+			[(#SAISIE{textarea, scenes,
+				label=<:film:label_scenes:>})]
+
+			[(#SAISIE{textarea, scenariste,
+				label=<:film:label_scenariste:>})]
+
+			[(#SAISIE{textarea, recompenses,
+				label=<:film:label_recompenses:>})]
+
+			[(#SAISIE{textarea, musique,
+				label=<:film:label_musique:>})]
+
+			[(#SAISIE{input, annonce,
+				label=<:film:label_annonce:>})]
+
+			[(#SAISIE{input, sortie,
+				label=<:film:label_sortie:>})]
+
+			[(#SAISIE{input, genre,
+				label=<:film:label_genre:>})]
+
+			[(#SAISIE{textarea, casting,
+				label=<:film:label_casting:>})]
+
+			[(#SAISIE{textarea, synopsis,
+				label=<:film:label_synopsis:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

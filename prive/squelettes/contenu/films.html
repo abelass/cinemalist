@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/films, par=title, env, ajax, sinon=<:film:info_aucun_film:>}>
+
+[(#AUTORISER{creer,film})
+	[(#URL_ECRIRE{film_edit,new=oui}|icone_verticale{<:film:icone_creer_film:>,film,new,right})]
+]

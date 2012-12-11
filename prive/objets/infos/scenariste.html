@@ -1,0 +1,28 @@
+<BOUCLE_scenariste(SCENARISTES){id_scenariste=#ENV{id}}{statut?}>
+<div class='infos'>
+[(#SET{texte_objet,<:scenariste:titre_scenariste:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_SCENARISTE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{scenaristes,#ID_SCENARISTE})]
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(SCENARISTES){id_scenariste}>
+	[(#VAL{redirect}
+		|generer_url_action{type=scenaristes&id=#ID_SCENARISTE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,scenaristes,#ID_SCENARISTE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=scenaristes&id=#ID_SCENARISTE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_scenariste>

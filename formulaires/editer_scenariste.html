@@ -1,0 +1,32 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_scenariste,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_scenariste' value='#ENV{id_scenariste}' />
+		<ul>
+
+			[(#SAISIE{input, nom,
+				label=<:scenariste:label_nom:>})]
+
+			[(#SAISIE{pays, nationalite,
+				label=<:scenariste:label_nationalite:>})]
+
+			[(#SAISIE{textarea, descriptif,
+				label=<:scenariste:label_descriptif:>})]
+
+			[(#SAISIE{date, date_naissance,
+				label=<:scenariste:label_date_naissance:>})]
+
+			[(#SAISIE{date, date_mort,
+				label=<:scenariste:label_date_mort:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

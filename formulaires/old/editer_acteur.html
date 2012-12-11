@@ -1,0 +1,57 @@
+<div class="cadre-formulaire formulaire_spip">
+	[<p style="font-weight: bold; color: green;" >(#MESSAGE_OK)</p>]
+	[<p style="font-weight: bold; color: red;" >(#MESSAGE_ERREUR)</p>]
+	<form action="#ENV{action}" method="post" enctype="multipart/form-data" >
+	    #ACTION_FORMULAIRE{#ENV{action}}
+		[<input type="hidden" name="new" value="(#NEW)" />]
+		[<input type="hidden" name="id_acteur" value="(#ID_ACTEUR)" />]
+		<fieldset>
+			<input type="hidden" name="prenom" value="" />
+			<ul>
+				<li>
+					<label for="nom">Nom</label>
+					<input type="text" name="nom" value="#NOM" class="forml" />
+				</li>
+					
+				<li>
+					<label for="nom">Descriptif rapide</label>
+					<textarea name="descriptif" class="forml" >#DESCRIPTIF**</textarea>
+				</li>
+				<li>
+					<label for="nom">Date de naissance</label>
+					<input type="text" name="date_naissance" value="#DATE_NAISSANCE" class="forml" />
+				</li>
+				<li>
+					<label for="nom">Date de mort</label>
+					<input type="text" name="date_mort" value="#DATE_MORT" class="forml" />
+				</li>
+				<li>
+					<label for="nom">Nationalite</label>
+					<select name="nationalite" class="forml" >
+						<option value="0">S&eacute;lectionnez un pays</option>
+						<BOUCLE_LesPays(GEO_PAYS)>
+							<option value="#ID_PAYS" [(#NATIONALITE|=={#ID_PAYS}|?{SELECTED="SELECTED"})]>#PAYS</option>
+						</BOUCLE_LesPays>
+					</select>
+				</li>
+				<li>
+					<label for="nom">Statut</label>
+					<select name="statut" class="forml" >
+						<option value="publie" [(#STATUT|=={publie}|?{SELECTED="SELECTED"})] >Visible en ligne</option>
+						<option value="prep" [(#STATUT|=={prep}|?{SELECTED="SELECTED"})] >En prepration</option>
+						<option value="poubelle" [(#STATUT|=={poubelle}|?{SELECTED="SELECTED"})] >Supprim&eacute;</option>
+					</select>
+				</li>
+				<li>
+					<label for="nom">Photo</label>
+					[<img src="(#LOGO|image_reduire{200})" /><br />
+						<input type="checkbox" name="supprimer_photo" value="acteur-#ID_ACTEUR" />Supprimer la photo
+					]
+					<input type="file" name="logo" class="forml" />
+					
+				</li>
+			</ul>
+			<input type="submit" name="submit_formulaire" value="Enregistrer"/>
+		</fieldset>
+	</form>
+</div>

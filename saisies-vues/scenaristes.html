@@ -1,0 +1,20 @@
+<BOUCLE_test_multiple(CONDITION){si #ENV{multiple}|=={on}|oui}>
+	[(#SET{valeur,[(#ENV*{valeur}|is_array|?{[(#ENV*{valeur})],[(#ENV*{valeur}|explode{','})]})]})]
+	<B_scenaristes_selectionnes>
+	<ul>
+	<BOUCLE_scenaristes_selectionnes(SCENARISTES){id_scenariste IN #GET*{valeur}}
+		{par num nom, nom}{statut?}{tout}>
+		<li class="choix">#NOM (#ID_SCENARISTE)</li>
+	</BOUCLE_scenaristes_selectionnes>
+	</ul>
+	</B_scenaristes_selectionnes>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_scenaristes_selectionnes>
+</BOUCLE_test_multiple>
+	<BOUCLE_scenariste_selectionne(SCENARISTES){id_scenariste=#ENV{valeur}}
+		{par num nom, nom}{statut?}{tout}>
+	  	<p>#NOM (#ID_SCENARISTE)</p>
+	</BOUCLE_scenariste_selectionne>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_scenariste_selectionne>
+<//B_test_multiple>

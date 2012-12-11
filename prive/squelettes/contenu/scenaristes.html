@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/scenaristes, par=nom, env, ajax, sinon=<:scenariste:info_aucun_scenariste:>}>
+
+[(#AUTORISER{creer,scenariste})
+	[(#URL_ECRIRE{scenariste_edit,new=oui}|icone_verticale{<:scenariste:icone_creer_scenariste:>,scenariste,new,right})]
+]

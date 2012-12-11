@@ -1,0 +1,20 @@
+<BOUCLE_test_multiple(CONDITION){si #ENV{multiple}|=={on}|oui}>
+	[(#SET{valeur,[(#ENV*{valeur}|is_array|?{[(#ENV*{valeur})],[(#ENV*{valeur}|explode{','})]})]})]
+	<B_films_selectionnes>
+	<ul>
+	<BOUCLE_films_selectionnes(FILMS){id_film IN #GET*{valeur}}
+		{par num title, title}{statut?}{tout}>
+		<li class="choix">#TITLE (#ID_FILM)</li>
+	</BOUCLE_films_selectionnes>
+	</ul>
+	</B_films_selectionnes>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_films_selectionnes>
+</BOUCLE_test_multiple>
+	<BOUCLE_film_selectionne(FILMS){id_film=#ENV{valeur}}
+		{par num title, title}{statut?}{tout}>
+	  	<p>#TITLE (#ID_FILM)</p>
+	</BOUCLE_film_selectionne>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_film_selectionne>
+<//B_test_multiple>

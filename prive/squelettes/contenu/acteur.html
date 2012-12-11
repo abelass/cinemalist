@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,acteur,#ID_ACTEUR}|sinon_interdire_acces)]
+<BOUCLE_acteur(ACTEURS){id_acteur}{statut==.*}{si #ENV{exec}|=={acteur}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,acteur,#ID_ACTEUR})
+		[(#ID_ACTEUR|afficher_qui_edite{acteur}|non)
+			[(#URL_ECRIRE{acteur_edit,id_acteur=#ID_ACTEUR}|icone_verticale{<:acteur:icone_modifier_acteur:>,acteur,edit,right ajax preload})]
+		]
+		[(#ID_ACTEUR|afficher_qui_edite{acteur}|oui)
+			[(#URL_ECRIRE{acteur_edit,id_acteur=#ID_ACTEUR}|icone_verticale{#ID_ACTEUR|afficher_qui_edite{acteur},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{acteur-24.png}|balise_img{acteur,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{acteur,#ID_ACTEUR}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/acteur,id=#ID_ACTEUR,id_acteur=#ID_ACTEUR,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,acteur,#ID_ACTEUR})
+	[(#ID_ACTEUR|afficher_qui_edite{acteur}|non)
+		[(#URL_ECRIRE{acteur_edit,id_acteur=#ID_ACTEUR}|icone_verticale{<:acteur:icone_modifier_acteur:>,acteur,edit,right ajax preload})]
+	]
+	[(#ID_ACTEUR|afficher_qui_edite{acteur}|oui)
+		[(#URL_ECRIRE{acteur_edit,id_acteur=#ID_ACTEUR}|icone_verticale{#ID_ACTEUR|afficher_qui_edite{acteur},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,acteur,id,#ID_ACTEUR},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
+]
+</BOUCLE_acteur>
+[(#ENV**{exec}|=={acteur_edit}|?{#INCLURE{fond=prive/squelettes/contenu/acteur_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_acteur>

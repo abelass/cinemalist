@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,film,#ID_FILM}|sinon_interdire_acces)]
+<BOUCLE_film(FILMS){id_film}{statut==.*}{si #ENV{exec}|=={film}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,film,#ID_FILM})
+		[(#ID_FILM|afficher_qui_edite{film}|non)
+			[(#URL_ECRIRE{film_edit,id_film=#ID_FILM}|icone_verticale{<:film:icone_modifier_film:>,film,edit,right ajax preload})]
+		]
+		[(#ID_FILM|afficher_qui_edite{film}|oui)
+			[(#URL_ECRIRE{film_edit,id_film=#ID_FILM}|icone_verticale{#ID_FILM|afficher_qui_edite{film},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#TITLE|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{film-24.png}|balise_img{film,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{film,#ID_FILM}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/film,id=#ID_FILM,id_film=#ID_FILM,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,film,#ID_FILM})
+	[(#ID_FILM|afficher_qui_edite{film}|non)
+		[(#URL_ECRIRE{film_edit,id_film=#ID_FILM}|icone_verticale{<:film:icone_modifier_film:>,film,edit,right ajax preload})]
+	]
+	[(#ID_FILM|afficher_qui_edite{film}|oui)
+		[(#URL_ECRIRE{film_edit,id_film=#ID_FILM}|icone_verticale{#ID_FILM|afficher_qui_edite{film},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,film,id,#ID_FILM},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
+]
+</BOUCLE_film>
+[(#ENV**{exec}|=={film_edit}|?{#INCLURE{fond=prive/squelettes/contenu/film_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_film>

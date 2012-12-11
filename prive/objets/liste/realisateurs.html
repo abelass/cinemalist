@@ -1,0 +1,39 @@
+[(#SET{defaut_tri,#ARRAY{
+	nom,1, 
+	date_maj,-1, 
+	id_realisateur,1,
+	points,-1
+}})]<B_liste_realisateurs>
+#ANCRE_PAGINATION
+<div class="liste-objets realisateurs">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{realisateur:info_1_realisateur,realisateur:info_nb_realisateurs}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='nom' scope='col'>[(#TRI{nom,<:realisateur:label_nom:>,ajax})]</th>
+			<th class='date' scope='col'>[(#TRI{date_maj,<:date:>,ajax})]</th> 
+			<th class='id' scope='col'>[(#TRI{id_realisateur,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_realisateurs(REALISATEURS){id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{realisateur-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{realisateur,#ID_REALISATEUR})]</td> 
+			<td class='nom principale'>[(#LOGO_REALISATEUR|image_reduire{20,26})]<a href="[(#ID_REALISATEUR|generer_url_entite{realisateur})]" title="<:info_numero_abbreviation|attribut_html:> #ID_REALISATEUR">[(#RANG). ]#NOM</a></td>
+			<td class='date secondaire'>[(#DATE_MAJ|affdate_jourcourt)]</td> 
+			<td class='id'>[(#AUTORISER{modifier,realisateur,#ID_REALISATEUR}|?{
+				<a href="[(#URL_ECRIRE{realisateur_edit,id_realisateur=#ID_REALISATEUR})]">#ID_REALISATEUR</a>,
+				#ID_REALISATEUR
+			})]</td>
+		</tr>
+	</BOUCLE_liste_realisateurs>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_realisateurs>[
+<div class="liste-objets realisateurs caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_realisateurs>

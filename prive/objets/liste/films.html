@@ -1,0 +1,39 @@
+[(#SET{defaut_tri,#ARRAY{
+	title,1, 
+	date,-1, 
+	id_film,1,
+	points,-1
+}})]<B_liste_films>
+#ANCRE_PAGINATION
+<div class="liste-objets films">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{film:info_1_film,film:info_nb_films}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='title' scope='col'>[(#TRI{title,<:film:label_title:>,ajax})]</th>
+			<th class='date' scope='col'>[(#TRI{date,<:date:>,ajax})]</th> 
+			<th class='id' scope='col'>[(#TRI{id_film,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_films(FILMS){id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num title},#GET{defaut_tri}}{par title}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{film-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{film,#ID_FILM})]</td> 
+			<td class='title principale'>[(#LOGO_FILM|image_reduire{20,26})]<a href="[(#ID_FILM|generer_url_entite{film})]" title="<:info_numero_abbreviation|attribut_html:> #ID_FILM">[(#RANG). ]#TITLE</a></td>
+			<td class='date secondaire'>[(#DATE|affdate_jourcourt)]</td> 
+			<td class='id'>[(#AUTORISER{modifier,film,#ID_FILM}|?{
+				<a href="[(#URL_ECRIRE{film_edit,id_film=#ID_FILM})]">#ID_FILM</a>,
+				#ID_FILM
+			})]</td>
+		</tr>
+	</BOUCLE_liste_films>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_films>[
+<div class="liste-objets films caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_films>

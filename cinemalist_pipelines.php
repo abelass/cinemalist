@@ -1,12 +1,12 @@
 <?php
 
 
-
+/*
 	function cinemalist_declarer_url_objets($array){
    	 	$array[] = 'acteur|film|scenariste|realisateur';  
   	 	   	 	 	 	
    	 return $array;
-	}
+	}*/
 
 
 

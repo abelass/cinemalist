@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,realisateur,#ID_REALISATEUR}|sinon_interdire_acces)]
+<BOUCLE_realisateur(REALISATEURS){id_realisateur}{statut==.*}{si #ENV{exec}|=={realisateur}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,realisateur,#ID_REALISATEUR})
+		[(#ID_REALISATEUR|afficher_qui_edite{realisateur}|non)
+			[(#URL_ECRIRE{realisateur_edit,id_realisateur=#ID_REALISATEUR}|icone_verticale{<:realisateur:icone_modifier_realisateur:>,realisateur,edit,right ajax preload})]
+		]
+		[(#ID_REALISATEUR|afficher_qui_edite{realisateur}|oui)
+			[(#URL_ECRIRE{realisateur_edit,id_realisateur=#ID_REALISATEUR}|icone_verticale{#ID_REALISATEUR|afficher_qui_edite{realisateur},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{realisateur-24.png}|balise_img{realisateur,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{realisateur,#ID_REALISATEUR}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/realisateur,id=#ID_REALISATEUR,id_realisateur=#ID_REALISATEUR,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,realisateur,#ID_REALISATEUR})
+	[(#ID_REALISATEUR|afficher_qui_edite{realisateur}|non)
+		[(#URL_ECRIRE{realisateur_edit,id_realisateur=#ID_REALISATEUR}|icone_verticale{<:realisateur:icone_modifier_realisateur:>,realisateur,edit,right ajax preload})]
+	]
+	[(#ID_REALISATEUR|afficher_qui_edite{realisateur}|oui)
+		[(#URL_ECRIRE{realisateur_edit,id_realisateur=#ID_REALISATEUR}|icone_verticale{#ID_REALISATEUR|afficher_qui_edite{realisateur},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,realisateur,id,#ID_REALISATEUR},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
+]
+</BOUCLE_realisateur>
+[(#ENV**{exec}|=={realisateur_edit}|?{#INCLURE{fond=prive/squelettes/contenu/realisateur_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_realisateur>

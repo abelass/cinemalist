@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,scenariste,#ID_SCENARISTE}|sinon_interdire_acces)]
+<BOUCLE_scenariste(SCENARISTES){id_scenariste}{statut==.*}{si #ENV{exec}|=={scenariste}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,scenariste,#ID_SCENARISTE})
+		[(#ID_SCENARISTE|afficher_qui_edite{scenariste}|non)
+			[(#URL_ECRIRE{scenariste_edit,id_scenariste=#ID_SCENARISTE}|icone_verticale{<:scenariste:icone_modifier_scenariste:>,scenariste,edit,right ajax preload})]
+		]
+		[(#ID_SCENARISTE|afficher_qui_edite{scenariste}|oui)
+			[(#URL_ECRIRE{scenariste_edit,id_scenariste=#ID_SCENARISTE}|icone_verticale{#ID_SCENARISTE|afficher_qui_edite{scenariste},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{scenariste-24.png}|balise_img{scenariste,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{scenariste,#ID_SCENARISTE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/scenariste,id=#ID_SCENARISTE,id_scenariste=#ID_SCENARISTE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,scenariste,#ID_SCENARISTE})
+	[(#ID_SCENARISTE|afficher_qui_edite{scenariste}|non)
+		[(#URL_ECRIRE{scenariste_edit,id_scenariste=#ID_SCENARISTE}|icone_verticale{<:scenariste:icone_modifier_scenariste:>,scenariste,edit,right ajax preload})]
+	]
+	[(#ID_SCENARISTE|afficher_qui_edite{scenariste}|oui)
+		[(#URL_ECRIRE{scenariste_edit,id_scenariste=#ID_SCENARISTE}|icone_verticale{#ID_SCENARISTE|afficher_qui_edite{scenariste},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,scenariste,id,#ID_SCENARISTE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin');/*\\]\\]>*/</script>
+]
+</BOUCLE_scenariste>
+[(#ENV**{exec}|=={scenariste_edit}|?{#INCLURE{fond=prive/squelettes/contenu/scenariste_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_scenariste>

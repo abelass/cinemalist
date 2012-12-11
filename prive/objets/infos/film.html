@@ -1,0 +1,28 @@
+<BOUCLE_film(FILMS){id_film=#ENV{id}}{statut?}>
+<div class='infos'>
+[(#SET{texte_objet,<:film:titre_film:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_FILM</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{films,#ID_FILM})]
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(FILMS){id_film}>
+	[(#VAL{redirect}
+		|generer_url_action{type=films&id=#ID_FILM}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,films,#ID_FILM,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=films&id=#ID_FILM}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_film>

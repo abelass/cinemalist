@@ -25,7 +25,16 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
 	   spip_realisateurs,
 	   spip_acteurs,
 	   spip_scenaristes')));
+       
+     $maj['0.2.7'] = array(
+        array('maj_tables', array('spip_films')),
+        array('sql_updateq','spip_films',array('statut' => 'publie'))
+        );
 
+     $maj['0.2.9'] = array(
+       array('sql_alter','TABLE spip_films CHANGE sortie_be sortie_be date NOT NULL'),
+       array('sql_alter','TABLE spip_films CHANGE sortie_fr sortie_fr date NOT NULL'),       
+        );
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -39,10 +48,7 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
  * - supprimer les tables et les champs créés par le plugin. 
 **/
 function cinemalist_vider_tables($nom_meta_base_version) {
-	# quelques exemples
-	# (que vous pouvez supprimer !)
-	# sql_drop_table("spip_xx");
-	# sql_drop_table("spip_xx_liens");
+
 
 	sql_drop_table("
 	   spip_films,
@@ -50,6 +56,11 @@ function cinemalist_vider_tables($nom_meta_base_version) {
 	   spip_acteurs,
 	   spip_scenaristes");
 
+    # Nettoyer les versionnages et forums
+    sql_delete("spip_versions",              sql_in("objet", array('film', 'acteur', 'realisateur', 'scenariste')));
+    sql_delete("spip_versions_fragments",    sql_in("objet", array('film', 'acteur', 'realisateur', 'scenariste')));
+    sql_delete("spip_forum",                 sql_in("objet", array('film', 'acteur', 'realisateur', 'scenariste')));
+    
 	effacer_meta($nom_meta_base_version);
 }
 

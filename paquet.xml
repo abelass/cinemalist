@@ -4,8 +4,8 @@
 	version="2.0.0"
 	etat="test"
 	compatibilite="[3.0.5;3.0.*]"
-	logo="prive/themes/spip/images/mcp_mm-64.png"
-	schema="0.1.8" 
+	logo="prive/themes/spip/images/video-x-generic.png"
+	schema="0.2.9" 
 >
 	<nom>CinemaList</nom>
 
@@ -15,15 +15,26 @@
 
 	<licence>GNU/GPL</licence>
 	
+	<pipeline nom="autoriser" inclure="cinemalist_autorisations.php" /> 
+	
 	<pipeline nom="affiche_milieu" inclure="cinemalist_pipelines.php" /> 
-	<pipeline nom="declarer_url_objets" inclure="cinemalist_pipelines.php" /> 	
 	<pipeline nom="declarer_tables_interfaces" inclure="base/cinemalist.php" /> 
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/cinemalist.php" /> 
 	<pipeline nom="declarer_tables_principales" inclure="base/cinemalist.php" /> 	
 	<pipeline nom="declarer_tables_auxiliaires" inclure="base/cinemalist.php" /> 	
 	
 
-	<menu nom="cinemalist" titre="cinemalist:cinemalist" parent="menu_edition" icone="images/video-x-generic.png" action="cinemalist" /> 
+
 	
 	<menu nom="commentaire_film" titre="Commentaires sur les critiques" parent="menu_activite" icone="images/internet-group-chat.png" action="commentaire_film" /> 
+	
+	<menu nom="films" titre="film:titre_films" parent="menu_edition" icone="images/film-16.png" action="films" /> 
+	<menu nom="film_creer" titre="film:icone_creer_film" parent="outils_rapides" icone="images/film-new-16.png" action="film_edit" parametres="new=oui" /> 
+
+	<menu nom="acteur_creer" titre="acteur:icone_creer_acteur" parent="outils_rapides" icone="images/acteur-new-16.png" action="acteur_edit" parametres="new=oui" /> 
+
+	<menu nom="realisateur_creer" titre="realisateur:icone_creer_realisateur" parent="outils_rapides" icone="images/realisateur-new-16.png" action="realisateur_edit" parametres="new=oui" /> 
+	
+	<menu nom="scenariste_creer" titre="scenariste:icone_creer_scenariste" parent="outils_rapides" icone="images/scenariste-new-16.png" action="scenariste_edit" parametres="new=oui" /> 
 	
 </paquet>
