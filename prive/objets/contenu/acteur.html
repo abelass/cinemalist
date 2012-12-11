@@ -7,7 +7,7 @@
 
 [<div class="champ contenu_nationalite[ (#NATIONALITE*|strlen|?{'',vide})]">
 	<label><:acteur:label_nationalite:> : </label>
-	<span dir='#LANG_DIR' class='#EDIT{nationalite} nationalite'>(#NATIONALITE)</span>
+<span dir='#LANG_DIR' class='#EDIT{nationalite} nationalite'>(#INCLURE{fond=prive/objets/inc-pays,id_pays=#NATIONALITE})</span>
 </div>]
 
 [<div class="champ contenu_descriptif[ (#DESCRIPTIF*|strlen|?{'',vide})]">
@@ -25,10 +25,6 @@
 	<span dir='#LANG_DIR' class='#EDIT{date_mort} date_mort'>(#DATE_MORT)</span>
 </div>]
 
-[<div class="champ contenu_logo[ (#LOGO*|strlen|?{'',vide})]">
-	<label><:acteur:label_logo:> : </label>
-	<span dir='#LANG_DIR' class='#EDIT{logo} logo'>(#LOGO)</span>
-</div>]
 
 [<div class="champ contenu_date_maj[ (#DATE_MAJ*|strlen|?{'',vide})]">
 	<label><:acteur:label_date_maj:> : </label>

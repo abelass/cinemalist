@@ -7,7 +7,7 @@
 
 [<div class="champ contenu_nationalite[ (#NATIONALITE*|strlen|?{'',vide})]">
 	<label><:scenariste:label_nationalite:> : </label>
-	<span dir='#LANG_DIR' class='#EDIT{nationalite} nationalite'>(#NATIONALITE)</span>
+	<span dir='#LANG_DIR' class='#EDIT{nationalite} nationalite'>(#INCLURE{fond=prive/objets/inc-pays,id_pays=#NATIONALITE})</span>
 </div>]
 
 [<div class="champ contenu_descriptif[ (#DESCRIPTIF*|strlen|?{'',vide})]">

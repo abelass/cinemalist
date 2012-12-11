@@ -5,10 +5,6 @@
     ''
     ,'simple personnel infos'})]
 
-[(#FORMULAIRE_INSTITUER_OBJET{commandes,#ID_COMMANDE})]
-
-
-
 <div class='infos'>
 [(#SET{texte_objet,<:acteur:titre_acteur:>})]
 <div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_ACTEUR</p></div>
@@ -35,7 +31,8 @@
 <//B_publie>
 
 </div>
-</BOUCLE_acteur>
 #BOITE_FERMER 
+</BOUCLE_acteur>
+
 
 <INCLURE{fond=prive/squelettes/navigation/inc-raccoursis,env}/>

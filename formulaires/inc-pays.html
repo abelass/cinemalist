@@ -1,5 +1,3 @@
-<select name="nationalite" class="forml" >
-<option value="0">S&eacute;lectionnez un pays</option>
 <BOUCLE_LesPays(GEO_PAYS)>
     <option value="#ID_PAYS" [(#NATIONALITE|=={#ID_PAYS}|?{SELECTED="SELECTED"})]>#PAYS</option>
 </BOUCLE_LesPays>
