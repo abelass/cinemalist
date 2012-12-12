@@ -1,0 +1,31 @@
+#BOITE_OUVRIR{'','note'}
+
+<B_Les_Comms>
+<h3>[(#GRAND_TOTAL|singulier_ou_pluriel{forum:info_1_message_forum,forum:info_nb_messages_forum}|sinon{<:forum:aucun_message_forum:>})]</h3>
+<div class="clear"></div>
+[<div class="pagination">(#PAGINATION{prive})</div>]
+    <ul class='liste-items forums'>
+<BOUCLE_Les_Comms(COMMENTAIRES_FILM){pagination 10}{par date}{inverse}>
+    <li class="item forum[ (#EXPOSE)] statut_#STATUT [ (#COMPTEUR_BOUCLE|alterner{'','odd'})]">
+        <div style="position: relative;">
+            <div class="cadre-titre" style="margin: 0px;[ color:(#STATUT|=={poubelle}|?{'#AAA8A8',''})]">
+                <h3 class="titre">[(#TITRE|sinon{'<em>SANS TITRE</em>'})] </h3>
+                <div style="float: right;">
+                    [(#STATUT|=={publie}|?{<a href="[(#EVAL{jeter_commentaire}|generer_url_action{id_commentaire=#ID_COMMENTAIRE_FILM})]" title="Supprimer le commentaire" ><img src="[(#CHEMIN_IMAGE{poubelle.gif})]" /></a>,''})]
+                    [(#STATUT|!={publie}|?{<a href="[(#EVAL{publier_commentaire}|generer_url_action{id_commentaire=#ID_COMMENTAIRE_FILM})]" title="publier le commentaire" ><img src="[(#CHEMIN_IMAGE{valider.png})]" /></a>,''})]
+                 </div>
+            </div>
+            Le [(#DATE|affdate)] &agrave; [(#DATE|affdate{"h:m"})][ par <a href="mailto:#EMAIL">(#NOM|sinon{#EMAIL})</a>]<B_LeFilm> sur <BOUCLE_LeFilm(FILMS){id_film = #ID_FILM}><a href="#URL_SITE_SPIP?page=critiques&id_film=#ID_FILM">#TITLE</a></BOUCLE_LeFilm>
+        </div>
+        <div id="content_commentaire_#ID_COMMENTAIRE_FILM" class="cadre-padding"  [style="border:(#STATUT|=={poubelle}|?{'red 2px dotted',''});"]>
+            <div>
+            [(#TEXTE|paragrapher)]
+            </div>
+        </div>
+    </li>
+</BOUCLE_Les_Comms>
+    </ul>
+ [<p class='pagination'>(#PAGINATION{prive})</p>]
+
+</B_Les_Comms>
+#BOITE_FERMER
