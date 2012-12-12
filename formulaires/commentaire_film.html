@@ -1,4 +1,4 @@
-<div class="formulaire_spip formulaire_commentaire_film">
+<div class="formulaire_spip formulaire_commentaire_film ">
 	[<div class="important"><a name="commentaire_film"></a>(#RESULTAT)</div>]<a name="commentaire_film"></a> 
 	<h4><:cinemalist:donnez_votre_avis_sur_le_film:></h4>
 	<form action="#SELF#commentaire_film" method="post">
@@ -57,7 +57,7 @@
 			</div>
 			<div class="input">
 				<label><:cinemalist:Votre_commentaire:> (max [(#CONFIG{cinemalist/taille_maximum_des_commentaires, 500})] char.)</label>
-				[(#TEXTE**|barre_textarea{20,40,#LANG})]
+				<textarea name="texte" rows="20" class="forml inserer_barre_forum" cols="40"/>#TEXTE</textarea>
 			</div>
 			<br />
 			<div class="input">
