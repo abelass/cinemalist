@@ -19,10 +19,12 @@
 
 			[(#SAISIE{input, sortie_be,
 				label=<:film:label_sortie_be:>,
+				defaut=0000-00-00,
 				explication=<:film:explication_sortie_be:> })]
 
 			[(#SAISIE{input, sortie_fr,
 				label=<:film:label_sortie_fr:>,
+				defaut=0000-00-00,
 				explication=<:film:explication_sortie_fr:> })]
 
 			[(#SAISIE{input, realisateur,
@@ -38,15 +40,19 @@
 				label=<:film:label_budget:>})]
 
 			[(#SAISIE{textarea, scenes,
+			    class=inserer_barre_edition inserer_previsualisation,
 				label=<:film:label_scenes:>})]
 
 			[(#SAISIE{textarea, scenariste,
+			    class=inserer_barre_edition inserer_previsualisation,
 				label=<:film:label_scenariste:>})]
 
 			[(#SAISIE{textarea, recompenses,
+			    class=inserer_barre_edition inserer_previsualisation,
 				label=<:film:label_recompenses:>})]
 
 			[(#SAISIE{textarea, musique,
+			    class=inserer_barre_edition inserer_previsualisation,
 				label=<:film:label_musique:>})]
 
 			[(#SAISIE{input, annonce,
@@ -59,9 +65,11 @@
 				label=<:film:label_genre:>})]
 
 			[(#SAISIE{textarea, casting,
+			    class=inserer_barre_edition inserer_previsualisation,
 				label=<:film:label_casting:>})]
 
 			[(#SAISIE{textarea, synopsis,
+			    class=inserer_barre_edition inserer_previsualisation,
 				label=<:film:label_synopsis:>})]
 
 		</ul>

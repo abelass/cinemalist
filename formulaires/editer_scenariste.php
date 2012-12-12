@@ -22,6 +22,7 @@ function formulaires_editer_scenariste_identifier_dist($id_scenariste='new', $re
  */
 function formulaires_editer_scenariste_charger_dist($id_scenariste='new', $retour='', $associer_objet='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('scenariste',$id_scenariste,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+     $valeurs['_hidden']='<input type="hidden" name="statut" value="publie"/>';
 	return $valeurs;
 }
 

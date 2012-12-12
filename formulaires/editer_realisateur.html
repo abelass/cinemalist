@@ -12,13 +12,16 @@
 				label=<:realisateur:label_nom:>})]
 
 			[(#SAISIE{date, date_naissance,
+			    defaut=0000-00-00,
 				label=<:realisateur:label_date_naissance:>})]
 
 			[(#SAISIE{input, date_mort,
+			    defaut=0000-00-00,
 				label=<:realisateur:label_date_mort:>})]
 
 			[(#SAISIE{textarea, descriptif,
 				label=<:realisateur:label_descriptif:>,
+				class=inserer_barre_edition inserer_previsualisation,
 				explication=<:realisateur:explication_descriptif:> })]
 
 			[(#SAISIE{pays, nationalite,

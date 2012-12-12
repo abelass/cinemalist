@@ -22,6 +22,7 @@ function formulaires_editer_acteur_identifier_dist($id_acteur='new', $retour='',
  */
 function formulaires_editer_acteur_charger_dist($id_acteur='new', $retour='', $associer_objet='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('acteur',$id_acteur,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+     $valeurs['_hidden']='<input type="hidden" name="statut" value="publie"/>';
 	return $valeurs;
 }
 
