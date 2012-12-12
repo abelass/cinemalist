@@ -199,7 +199,8 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
         'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
         'rechercher_champs' => array("title" => 8, "title_vo" => 8, "annee" => 2, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 4, "genre" => 4, "casting" => 4, "synopsis" => 4),
-        'tables_jointures'  => array('spip_films_liens'),
+        'tables_jointures'  => array('spip_acteurs_liens'),
+             
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
             'prop'     => 'texte_statut_propose_evaluation',
@@ -368,9 +369,13 @@ function cinemalist_declarer_tables_objets_sql($tables) {
 function cinemalist_declarer_tables_interfaces($tables_interfaces){
 
     $tables_interfaces['table_des_tables']['films'] = 'films';  
+    $tables_interfaces['table_des_tables']['films_liens'] = 'films_liens';          
     $tables_interfaces['table_des_tables']['acteurs'] = 'acteurs';  
+    $tables_interfaces['table_des_tables']['acteurs_liens'] = 'acteurs_liens';      
     $tables_interfaces['table_des_tables']['scenaristes'] = 'scenaristes';  
+    $tables_interfaces['table_des_tables']['scenaristes_liens'] = 'scenaristes_liens';             
     $tables_interfaces['table_des_tables']['realisateurs'] = 'realisateurs';    
+    $tables_interfaces['table_des_tables']['realisateurs_liens'] = 'realisateurs_liens';             
     $tables_interfaces['table_des_tables']['commentaires_film'] = 'commentaires_film';
 
     
