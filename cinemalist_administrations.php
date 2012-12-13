@@ -85,8 +85,11 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
         
       $maj['0.3.20'] = array(               
         array('maj_tables', array('spip_acteurs','spip_realisateurs','spip_scenaristes','spip_films')),             
-        );         
-                            
+        );  
+               
+      $maj['0.3.21'] = array(               
+        array('sql_alter','TABLE spip_films CHANGE title_VO title_vo varchar(150) NOT NULL'),                
+        );                              
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
