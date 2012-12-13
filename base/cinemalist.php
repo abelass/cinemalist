@@ -171,7 +171,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "title_vo"           => "varchar(150) NOT NULL",
             "annee"              => "varchar(10) NOT NULL",
             "sortie_be"          => "date NOT NULL DEFAULT '0000-00-00'", 
-            "sortie_fr"          => "date DEFAULT  DEFAULT '0000-00-00'",
+            "sortie_fr"          => "date NOT NULL DEFAULT '0000-00-00'",
             "realisateur"        => "varchar(250) NOT NULL",
             "pays"               => "varchar(100) NOT NULL",
             "duree"              => "varchar(50) NOT NULL",
@@ -188,7 +188,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "logo"               => "varchar(250) NOT NULL",
             "date"               => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
-            "maj"                => "TIMESTAMP"
+            "date_maj"           => "TIMESTAMP"
         ),
         'key' => array(
             "PRIMARY KEY"        => "id_film",
@@ -196,8 +196,8 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         ),
         'titre' => "title AS titre, '' AS lang",
         'date' => "date",
-        'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
-        'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting'),
+        'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes','scenariste', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
+        'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
         'rechercher_champs' => array("title" => 8, "title_vo" => 8, "annee" => 2, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 4, "genre" => 4, "casting" => 4, "synopsis" => 4),
         'tables_jointures'  => array('spip_acteurs_liens'),
              
@@ -230,20 +230,18 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "nom"                => "tinytext NOT NULL",
             "nationalite"        => "varchar(5) NOT NULL",
             "descriptif"         => "text NOT NULL",
-            "date_naissance"     => "date DEFAULT  DEFAULT '0000-00-00'",
-            "date_mort"          => "date DEFAULT  DEFAULT '0000-00-00'",
+            "date_naissance"     => "date NOT NULL DEFAULT '0000-00-00'",
+            "date_mort"          => "date NOT NULL DEFAULT '0000-00-00'",
             "logo"               => "varchar(255) NOT NULL",
-            "date_maj"           => "datetime NOT NULL",
-            "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
-            "maj"                => "TIMESTAMP"
+            "date_maj"            => "TIMESTAMP"
         ),
         'key' => array(
             "PRIMARY KEY"        => "id_acteur",
             "KEY statut"         => "statut", 
         ),
         'titre' => "nom AS titre, '' AS lang",
-        'date' => "date_maj",
+        'date' => "date",
         'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'champs_versionnes' => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
@@ -275,22 +273,20 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'field'=> array(
             "id_realisateur"     => "bigint(21) NOT NULL",
             "nom"                => "tinytext NOT NULL",
-            "date_naissance"     => "date DEFAULT  DEFAULT '0000-00-00'",
-            "date_mort"          => "date DEFAULT  DEFAULT '0000-00-00'",
+            "date_naissance"     => "date NOT NULL DEFAULT '0000-00-00'",
+            "date_mort"          => "date NOT NULL DEFAULT '0000-00-00'",
             "descriptif"         => "text NOT NULL",
             "logo"               => "varchar(255) NOT NULL",
             "nationalite"        => "varchar(5) NOT NULL",
-            "date_maj"           => "datetime NOT NULL",
-            "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
-            "maj"                => "TIMESTAMP"
+            "date_maj"                => "TIMESTAMP"
         ),
         'key' => array(
             "PRIMARY KEY"        => "id_realisateur",
             "KEY statut"         => "statut", 
         ),
         'titre' => "nom AS titre, '' AS lang",
-        'date' => "date_maj",
+        'date' => "date",
         'champs_editables'  => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
         'champs_versionnes' => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
         'rechercher_champs' => array("nom" => 8, "date_naissance" => 2, "date_mort" => 2),
@@ -324,20 +320,18 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "nom"                => "tinytext NOT NULL",
             "nationalite"        => "varchar(5) NOT NULL",
             "descriptif"         => "text NOT NULL",
-            "date_naissance"     => "date DEFAULT  DEFAULT '0000-00-00'",
-            "date_mort"          => "date DEFAULT  DEFAULT '0000-00-00'",
+            "date_naissance"     => "date NOT NULL DEFAULT '0000-00-00'",
+            "date_mort"          => "date NOT NULL DEFAULT '0000-00-00'",
             "logo"               => "varchar(255) NOT NULL",
-            "date_maj"           => "datetime NOT NULL",
-            "date_maj"           => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
-            "maj"                => "TIMESTAMP"
+            "date_maj"            => "TIMESTAMP"
         ),
         'key' => array(
             "PRIMARY KEY"        => "id_scenariste",
             "KEY statut"         => "statut", 
         ),
         'titre' => "nom AS titre, '' AS lang",
-        'date' => "date_maj",
+        'date' => "date",
         'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'champs_versionnes' => array('nom', 'descriptif', 'date_naissance', 'date_mort'),
         'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
@@ -431,31 +425,17 @@ function cinemalist_declarer_tables_auxiliaires($tables){
         )
     );
 
-    $tables['spip_scenaristes_liens'] = array(
-        'field' => array(
-            "id_scenariste"      => "bigint(21) DEFAULT '0' NOT NULL",
-            "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
-            "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
-            "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
-        ),
-        'key' => array(
-            "PRIMARY KEY"        => "id_scenariste,id_objet,objet",
-            "KEY id_scenariste"  => "id_scenariste"
-        )
-    );
-    
-
     
     $tables['spip_films_liens'] = array(
         'field' => array(
-            "id_article"      => "bigint(21) DEFAULT '0' NOT NULL",
+            "id_film"            => "bigint(21) DEFAULT '0' NOT NULL",
             "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
             "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
             "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
         ),
         'key' => array(
-            "PRIMARY KEY"        => "id_article,id_objet,objet",
-            "KEY id_scenariste"  => "id_article"
+            "PRIMARY KEY"        => "id_film,id_objet,objet",
+            "KEY id_film"        => "id_film"
         )
     );
 return $tables;

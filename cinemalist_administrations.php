@@ -54,7 +54,39 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
         array('sql_updateq','spip_films_liens',array('objet' => 'article')),        
         );
                 
-
+     $maj['0.3.15'] = array(
+        array('sql_alter','TABLE spip_films_liens DROP COLUMN id_article'),
+        array('sql_alter','TABLE spip_films_liens DROP COLUMN id'),
+        array('sql_alter','TABLE spip_films_liens ADD PRIMARY KEY  (id_film , id_objet , objet)'), 
+        array('sql_alter','TABLE spip_realisateurs_liens DROP PRIMARY KEY'),   
+        array('sql_alter','TABLE spip_films_liens ADD INDEX (id_film)'), 
+        array('sql_alter','TABLE spip_acteurs_liens DROP PRIMARY KEY'),              
+        array('sql_alter','TABLE spip_acteurs_liens ADD PRIMARY KEY  (id_acteur , id_objet , objet )'), 
+        array('sql_alter','TABLE spip_realisateurs_liens DROP PRIMARY KEY'),         
+        array('sql_alter','TABLE spip_realisateurs_liens ADD PRIMARY KEY  ( id_realisateur , id_objet , objet)'), 
+        array('sql_alter','TABLE spip_scenaristes_liens DROP PRIMARY KEY'),        
+        array('sql_alter','TABLE spip_scenaristes_liens ADD PRIMARY KEY  (id_scenariste , id_objet , objet )'),                
+        );
+        
+     $maj['0.3.16'] = array(
+        array('sql_alter','TABLE spip_acteurs CHANGE date_naissance date_naissance date NOT NULL DEFAULT "0000-00-00"'), 
+        array('sql_alter','TABLE spip_acteurs CHANGE date_mort date_mort date NOT NULL DEFAULT "0000-00-00"'),                
+        array('sql_alter','TABLE spip_realisateurs CHANGE date_naissance date_naissance date NOT NULL DEFAULT "0000-00-00"'), 
+        array('sql_alter','TABLE spip_realisateurs CHANGE date_mort date_mort date NOT NULL DEFAULT "0000-00-00"'),                
+        array('sql_alter','TABLE spip_scenaristes CHANGE date_naissance date_naissance date NOT NULL DEFAULT "0000-00-00"'), 
+        array('sql_alter','TABLE spip_scenaristes CHANGE date_mort date_mort date NOT NULL DEFAULT "0000-00-00"'),                
+        array('sql_alter','TABLE spip_films CHANGE sortie_be sortie_be date NOT NULL DEFAULT "0000-00-00"'),
+        array('sql_alter','TABLE spip_films CHANGE sortie_fr sortie_fr date NOT NULL DEFAULT "0000-00-00"'),               
+        );
+        
+      $maj['0.3.17'] = array(               
+        array('sql_alter','TABLE spip_films CHANGE maj date_maj TIMESTAMP'),             
+        ); 
+        
+      $maj['0.3.20'] = array(               
+        array('maj_tables', array('spip_acteurs','spip_realisateurs','spip_scenaristes','spip_films')),             
+        );         
+                            
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
