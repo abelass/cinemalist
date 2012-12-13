@@ -7,18 +7,18 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'ajouter_lien_realisateur' => 'Ajouter ce realisateur',
+	'ajouter_lien_realisateur' => 'Ajouter ce réalisateur',
 
 	// E
 	'explication_descriptif' => '4',
 
 	// I
-	'icone_creer_realisateur' => 'Créer un realisateur',
-	'icone_modifier_realisateur' => 'Modifier ce realisateur',
-	'info_1_realisateur' => 'Un realisateur',
-	'info_aucun_realisateur' => 'Aucun realisateur',
-	'info_nb_realisateurs' => '@nb@ realisateurs',
-	'info_realisateurs_auteur' => 'Les realisateurs de cet auteur',
+	'icone_creer_realisateur' => 'Créer un réalisateur',
+	'icone_modifier_realisateur' => 'Modifier ce réalisateur',
+	'info_1_realisateur' => 'Un réalisateur',
+	'info_aucun_realisateur' => 'Aucun réalisateur',
+	'info_nb_realisateurs' => '@nb@ réalisateurs',
+	'info_realisateurs_auteur' => 'Les réalisateurs de cet auteur',
 
 	// L
 	'label_date_maj' => 'Date maj',
@@ -30,18 +30,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_nom' => 'Nom',
 
 	// R
-	'retirer_lien_realisateur' => 'Retirer ce realisateur',
-	'retirer_tous_liens_realisateurs' => 'Retirer tous les realisateurs',
+	'retirer_lien_realisateur' => 'Retirer ce réalisateur',
+	'retirer_tous_liens_realisateurs' => 'Retirer tous les réalisateurs',
 
 	// T
-	'texte_ajouter_realisateur' => 'Ajouter un realisateur',
-	'texte_changer_statut_realisateur' => 'Ce realisateur est :',
-	'texte_creer_associer_realisateur' => 'Créer et associer un realisateur',
-	'titre_langue_realisateur' => 'Langue de ce realisateur',
-	'titre_logo_realisateur' => 'Logo de ce realisateur',
-	'titre_realisateur' => 'Realisateur',
-	'titre_realisateurs' => 'Realisateurs',
-	'titre_realisateurs_rubrique' => 'Realisateurs de la rubrique',
+	'texte_ajouter_realisateur' => 'Ajouter un réalisateur',
+	'texte_changer_statut_realisateur' => 'Ce réalisateur est :',
+	'texte_creer_associer_realisateur' => 'Créer et associer un réalisateur',
+	'titre_langue_realisateur' => 'Langue de ce réalisateur',
+	'titre_logo_realisateur' => 'Logo de ce réalisateur',
+	'titre_realisateur' => 'Réalisateur',
+	'titre_realisateurs' => 'Réalisateurs',
+	'titre_realisateurs_rubrique' => 'Réalisateurs de la rubrique',
 );
 
 ?>
