@@ -89,7 +89,13 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
                
       $maj['0.3.21'] = array(               
         array('sql_alter','TABLE spip_films CHANGE title_VO title_vo varchar(150) NOT NULL'),                
-        );                              
+        ); 
+        
+      $maj['0.3.22'] = array(               
+        array('sql_updateq','spip_acteurs',array('statut' => 'publie'),'statut='.sql_quote('publi')), 
+        array('sql_updateq','spip_realisateurs',array('statut' => 'publie'),'statut='.sql_quote('publi')),  
+        array('sql_updateq','spip_scenaristes',array('statut' => 'publie'),'statut='.sql_quote('publi')),
+        );
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
