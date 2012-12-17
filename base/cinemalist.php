@@ -198,7 +198,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'date' => "date",
         'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes','scenariste', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
         'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
-        'rechercher_champs' => array("title" => 8, "title_vo" => 8, "annee" => 2, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 4, "genre" => 4, "casting" => 4, "synopsis" => 4),
+        'rechercher_champs' => array("title" => 8, "title_vo" => 8, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 2, "genre" => 2, "casting" => 2, "synopsis" => 4),
         'tables_jointures'  => array('spip_acteurs_liens'),
              
         'statut_textes_instituer' => array(
@@ -244,7 +244,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'date' => "date",
         'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'champs_versionnes' => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
-        'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
+        'rechercher_champs' => array("nom" => 8, "descriptif" => 4),
         'tables_jointures'  => array('spip_acteurs_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
@@ -289,7 +289,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'date' => "date",
         'champs_editables'  => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
         'champs_versionnes' => array('nom', 'date_naissance', 'date_mort', 'descriptif'),
-        'rechercher_champs' => array("nom" => 8, "date_naissance" => 2, "date_mort" => 2),
+        'rechercher_champs' => array("nom" => 8, "descriptif" => 4),
         'tables_jointures'  => array('spip_realisateurs_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
@@ -334,7 +334,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'date' => "date",
         'champs_editables'  => array('nom', 'nationalite', 'descriptif', 'date_naissance', 'date_mort'),
         'champs_versionnes' => array('nom', 'descriptif', 'date_naissance', 'date_mort'),
-        'rechercher_champs' => array("nom" => 8, "descriptif" => 4, "date_naissance" => 2, "date_mort" => 2),
+        'rechercher_champs' => array("nom" => 8, "descriptif" => 4),
         'tables_jointures'  => array('spip_scenaristes_liens'),
         'statut_textes_instituer' => array(
             'prepa'    => 'texte_statut_en_cours_redaction',
