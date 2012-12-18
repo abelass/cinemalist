@@ -18,7 +18,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_films(FILMS){id_mot?}{id_auteur?}{where?}{statut?}{title LIKE %(#ENV{recherche})%}{tri #ENV{par,num title},#GET{defaut_tri}}{par title}{pagination #ENV{nb,10}}>
+	<BOUCLE_liste_films(FILMS){id_mot?}{id_auteur?}{where?}{statut?}{title LIKE %(#ENV{recherche})%}{recherche?}{tri #ENV{par,num title},#GET{defaut_tri}}{par title}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{film-16.png}|balise_img)]</td>
 			<td class='statut'>[(#STATUT|puce_statut{film,#ID_FILM})]</td> 

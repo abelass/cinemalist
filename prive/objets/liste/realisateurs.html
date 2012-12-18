@@ -18,7 +18,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_realisateurs(REALISATEURS){id_mot?}{id_auteur?}{where?}{statut?}{nom LIKE %(#ENV{recherche})%}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+	<BOUCLE_liste_realisateurs(REALISATEURS){id_mot?}{id_auteur?}{where?}{statut?}{recherche ?}{nom LIKE %(#ENV{recherche})%}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{realisateur-16.png}|balise_img)]</td>
 			<td class='statut'>[(#STATUT|puce_statut{realisateur,#ID_REALISATEUR})]</td> 
