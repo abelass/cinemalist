@@ -8,7 +8,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'ajouter_lien_film' => 'Ajouter ce film',
-
+	'affichage_special' => 'Affichage spécial',
+	
 	// E
 	'explication_sortie_be' => 'aaaa-mm-jj',
 	'explication_sortie_fr' => 'aaaa-mm-jj',
