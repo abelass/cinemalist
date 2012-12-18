@@ -185,6 +185,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
             "genre"              => "varchar(100) NOT NULL",
             "casting"            => "mediumtext NOT NULL",
             "synopsis"           => "longtext NOT NULL",
+            "affichage_special"  => "varchar(3) NOT NULL",            
             "logo"               => "varchar(250) NOT NULL",
             "date"               => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
             "statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
@@ -196,9 +197,9 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         ),
         'titre' => "title AS titre, '' AS lang",
         'date' => "date",
-        'champs_editables'  => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes','scenariste', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
-        'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'scenes', 'recompenses', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
-        'rechercher_champs' => array("title" => 8, "title_vo" => 8, "pays" => 2, "scenes" => 2, "scenariste" => 4, "recompenses" => 2, "musique" => 2, "genre" => 2, "casting" => 2, "synopsis" => 4),
+        'champs_editables'  => array('title', 'title_vo', 'affichage_special', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget','scenariste', 'musique', 'annonce', 'sortie', 'genre','casting','synopsis'),
+        'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
+        'rechercher_champs' => array("title" => 8, "title_vo" => 6, "pays" => 2, "scenariste" => 4, "musique" => 2, "genre" => 2, "casting" => 2, "synopsis" => 4),
         'tables_jointures'  => array('spip_acteurs_liens'),
              
         'statut_textes_instituer' => array(

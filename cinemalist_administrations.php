@@ -96,6 +96,10 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
         array('sql_updateq','spip_realisateurs',array('statut' => 'publie'),'statut='.sql_quote('publi')),  
         array('sql_updateq','spip_scenaristes',array('statut' => 'publie'),'statut='.sql_quote('publi')),
         );
+        
+      $maj['0.4.1'] = array(               
+        array('maj_tables', array('spip_films')),
+        );        
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
