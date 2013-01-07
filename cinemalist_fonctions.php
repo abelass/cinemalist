@@ -107,4 +107,21 @@ function JsToDb( $string)
       $string= preg_replace($patterns,$replace, $string);
     return  $string;
 }   
+
+function rediriger_ancien_url($url){
+
+    $explode=explode(',',$url);
+    $objets=array(realisateur,scenariste,acteur,film);
+
+    foreach($objets AS $objet){
+        if(preg_match('*'.$objet.'*',$explode[0])){
+            $id_objet=str_replace($objet,'',$explode[0]);
+            $url_new=str_replace('.html','', $url);
+            sql_insertq('spip_urls',array('type'=>$objet,'id_objet'=>$id_objet,'url'=>$url_new,'date'=>'2007-11-24 16:02:47'));
+            $redirect=generer_url_entite($objet,$id_objet);
+            header("location:$url");
+        }
+        
+    }
+}
 ?>
