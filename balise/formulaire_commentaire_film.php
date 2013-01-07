@@ -14,6 +14,7 @@ function balise_FORMULAIRE_COMMENTAIRE_FILM_stat($args, $filtres) {
 	}
 	
 function balise_FORMULAIRE_COMMENTAIRE_FILM_dyn($id_film, $formulaire) {
+    include_spip('inc/config');
 
 	if (strlen(_request('radar')) < 1){	
 		$contexte = array();
