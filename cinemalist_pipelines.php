@@ -161,4 +161,9 @@ function cinemalist_optimiser_base_disparus($flux){
     return $flux;
 }
 
+function cinemalist_jqueryui_plugins($scripts){
+   $scripts[] = 'jquery.ui.autocomplete';
+   return $scripts;
+}
+
 ?>

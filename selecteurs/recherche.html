@@ -1,0 +1,16 @@
+#HTTP_HEADER{Content-Type: text/plain; charset=#CHARSET}
+[(#REM)
+#SET{donnees,#ARRAY{0,test}
+<BOUCLE_films(FILMS){title LIKE %(#ENV{term}|replace{L&#039;,"'"})%}{pagination 20}{par title}{inverse}>
+    #SET{donnees,#GET{donnees}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#TITLE|supprimer_numero}}}
+</BOUCLE_films>
+<BOUCLE_RechActeurs(ACTEURS){nom LIKE %(#ENV{term}|replace{L&#039;,"'"})%}}{!par points}>
+#SET{donnees,#GET{donnees}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#NOM}}}
+</BOUCLE_RechActeurs>
+<BOUCLE_Rechscenaristes(SCENARISTES){nom LIKE %(#ENV{term}|replace{L&#039;,"'"})%}}{!par points}>
+#SET{donnees,#GET{donnees}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#NOM}}}
+</BOUCLE_Rechscenaristes>
+<BOUCLE_Rechrealisteurs(REALISATEURS){nom LIKE %(#ENV{term}|replace{L&#039;,"'"})%}}{!par points}>
+#SET{donnees,#GET{donnees}|array_merge{#ARRAY{#COMPTEUR_BOUCLE,#NOM}}}
+</BOUCLE_Rechrealisteurs>
+[(#GET{donnees}|json_encode)]
