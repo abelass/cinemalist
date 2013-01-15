@@ -199,7 +199,7 @@ function cinemalist_declarer_tables_objets_sql($tables) {
         'date' => "date",
         'champs_editables'  => array('title', 'title_vo', 'affichage_special', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget','scenariste', 'musique', 'annonce', 'sortie', 'genre','casting','synopsis'),
         'champs_versionnes' => array('title', 'title_vo', 'annee', 'sortie_be', 'sortie_fr', 'realisateur', 'pays', 'duree', 'budget', 'musique', 'annonce', 'sortie', 'genre', 'casting','synopsis'),
-        'rechercher_champs' => array("title" => 8, "title_vo" => 6, "pays" => 2, "scenariste" => 4, "musique" => 2, "genre" => 2, "casting" => 2, "synopsis" => 4),
+        'rechercher_champs' => array("title" => 8),
         'tables_jointures'  => array('spip_acteurs_liens'),
              
         'statut_textes_instituer' => array(
