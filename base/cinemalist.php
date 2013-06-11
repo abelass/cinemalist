@@ -374,9 +374,6 @@ function cinemalist_declarer_tables_interfaces($tables_interfaces){
     $tables_interfaces['table_des_tables']['commentaires_film'] = 'commentaires_film';
 
     
-    $tables_interfaces['tables_jointures']['spip_articles'][] = 'spip_articles_liens';
-
-    
             
     // Titre pour url
     /*$tables_interfaces['table_titre']['films'] = "url as titre, 'title' AS lang";    
