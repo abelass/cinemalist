@@ -55,6 +55,12 @@
                 <input type="checkbox" name="daube" [(#DAUBE|?{' ',''})checked='checked'] id="daube" /> <label for="daube"><:cinemalist:daube:></label>
                 
 			</div>
+			[(#REM) Piege a robots spammeurs ]
+			<[(#ENV{div,'div'})] class="editer saisie_session_email" style="display: none;">
+				<label for="give_me_your_email"><:antispam_champ_vide:></label>
+				<input type="text" class="text email" name="email_nobot" id="give_me_your_email" value="#ENV{email_nobot}" size="10" />
+			</[(#ENV{div,'div'})]>
+
 			<div class="input">
 				<label><:cinemalist:Votre_commentaire:> (max [(#CONFIG{cinemalist/taille_maximum_des_commentaires, 500})] char.)</label>
 				<textarea name="texte" rows="20" class="forml inserer_barre_forum" cols="40"/>#TEXTE</textarea>

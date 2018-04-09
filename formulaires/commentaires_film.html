@@ -2,7 +2,7 @@
 <div class="formulaire_spip formulaire_commentaires_film ajax">
 	[<div class="important"><a name="commentaires_film"></a>(#RESULTAT)</div>]<a name="commentaires_film"></a> 
 	<h4><:cinemalist:donnez_votre_avis_sur_le_film:></h4>
-	<form action="#SELF#commentaires_film" method="post">
+	<form method='post' action='#ENV{action}'><div>
 		[(#ACTION_FORMULAIRE{#ENV{action}})]
 		[(#VISUALIZE|=={oui}|?{' ',''})
 			

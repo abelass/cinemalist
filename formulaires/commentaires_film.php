@@ -2,7 +2,8 @@
 
 function formulaires_commentaires_film_charger_dist($id_film){
 
-	if(!$id_film)$id_film=_request('id_film');
+	if(!$id_film)
+		$id_film=intval(_request('id_film'));
 	
 	$valeurs=array(
 		'titre'=>'',
@@ -13,7 +14,7 @@ function formulaires_commentaires_film_charger_dist($id_film){
 		'etoiles'=>'',
 		'daube'=>'',
 		'coeur'=>'',	
-		'id_film'=>$id_film,
+		'id_film'=>intval($id_film),
 		'id_auteur'=>$GLOBALS['auteur_session']['id_auteur'],
 		'visualize'=>'non',
 		'texte'=>substr($valeurs['texte'], 0, lire_config('cinemalist/taille_maximum_des_commentaires', 500)),
@@ -21,17 +22,19 @@ function formulaires_commentaires_film_charger_dist($id_film){
 		'publier'=>'',
 		'radar'=>'',							
 	);
-	$valeurs['_hidden'].='<input type="hidden" name="id_film" value="'.$id_film.'"/>';
+	$valeurs['_hidden'].='<input type="hidden" name="id_film" value="'.intval($id_film).'"/>';
 
 
 return $valeurs;
 }
 	
+function formulaires_commentaires_film_verifier_dist($id_film){}
+
 function formulaires_commentaires_film_traiter_dist($id_film) {
 	$retour = array();
 	$retour['message_ok']='prev';
 			
-	if(!$id_film)$id_film=_request('id_film');
+	if(!$id_film)$id_film=intval(_request('id_film'));
 	
 	if (strlen(_request('radar')) < 1){	
 		
@@ -53,7 +56,7 @@ function formulaires_commentaires_film_traiter_dist($id_film) {
 				'etoiles'=>_request('etoiles'),
 				'daube'=>_request('daube'),
 				'coeur'=>_request('coeur'),	
-				'id_film'=>$id_film,
+				'id_film'=>intval($id_film),
 				'id_auteur'=>$GLOBALS['auteur_session']['id_auteur'],
 				'statut'=>lire_config('cinemalist/statut_par_defaut_des_commentaires','publie'),
 				'texte'=>_request('titre'),
