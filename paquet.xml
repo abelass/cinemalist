@@ -5,40 +5,40 @@
 	etat="test"
 	compatibilite="[3.0.5;3.2.*]"
 	logo="prive/themes/spip/images/video-x-generic.png"
-	schema="0.4.1" 
+	schema="0.4.1"
 >
 	<nom>CinemaList</nom>
 
 	<auteur>Martin Dewolf</auteur>
 	<auteur lien='mailto:benoit@exibit.be'>Benoit Vrins</auteur>
-	<auteur lien='http://www.mychacra.net/'>Rainer Müller</auteur>
+	<auteur lien='https://websimple.be/'>Rainer Müller</auteur>
 
 	<licence>GNU/GPL</licence>
-	
-	<necessite nom="saisies" compatibilite="[1.24.0;]" /> 
-	<necessite nom="pays" compatibilite="[2.1.1;]" /> 	
-	
-	<pipeline nom="autoriser" inclure="cinemalist_autorisations.php" /> 
-	
-	<pipeline nom="affiche_milieu" inclure="cinemalist_pipelines.php" /> 
-	<pipeline nom="declarer_tables_interfaces" inclure="base/cinemalist.php" /> 
-	<pipeline nom="declarer_tables_objets_sql" inclure="base/cinemalist.php" /> 
-	<pipeline nom="declarer_tables_principales" inclure="base/cinemalist.php" /> 	
+
+	<necessite nom="saisies" compatibilite="[1.24.0;]" />
+	<necessite nom="pays" compatibilite="[2.1.1;]" />
+
+	<pipeline nom="autoriser" inclure="cinemalist_autorisations.php" />
+
+	<pipeline nom="affiche_milieu" inclure="cinemalist_pipelines.php" />
+	<pipeline nom="declarer_tables_interfaces" inclure="base/cinemalist.php" />
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/cinemalist.php" />
+	<pipeline nom="declarer_tables_principales" inclure="base/cinemalist.php" />
 	<pipeline nom="declarer_tables_auxiliaires" inclure="base/cinemalist.php" />
-	<pipeline nom="optimiser_base_disparus" inclure="cinemalist_pipelines.php" /> 	
-	<pipeline nom="jqueryui_plugins" inclure="cinemalist_pipelines.php" /> 		
+	<pipeline nom="optimiser_base_disparus" inclure="cinemalist_pipelines.php" />
+	<pipeline nom="jqueryui_plugins" inclure="cinemalist_pipelines.php" />
 
 
-	
-	<menu nom="commentaire_film" titre="Commentaires sur les critiques" parent="menu_activite" icone="images/internet-group-chat.png" action="commentaire_film" /> 
-	
-	<menu nom="films" titre="film:titre_films" parent="menu_edition" icone="images/film-16.png" action="films" /> 
-	<menu nom="film_creer" titre="film:icone_creer_film" parent="outils_rapides" icone="images/film-new-16.png" action="film_edit" parametres="new=oui" /> 
 
-	<menu nom="acteur_creer" titre="acteur:icone_creer_acteur" parent="outils_rapides" icone="images/acteur-new-16.png" action="acteur_edit" parametres="new=oui" /> 
+	<menu nom="commentaire_film" titre="Commentaires sur les critiques" parent="menu_activite" icone="images/internet-group-chat.png" action="commentaire_film" />
 
-	<menu nom="realisateur_creer" titre="realisateur:icone_creer_realisateur" parent="outils_rapides" icone="images/realisateur-new-16.png" action="realisateur_edit" parametres="new=oui" /> 
-	
-	<menu nom="scenariste_creer" titre="scenariste:icone_creer_scenariste" parent="outils_rapides" icone="images/scenariste-new-16.png" action="scenariste_edit" parametres="new=oui" /> 
-	
+	<menu nom="films" titre="film:titre_films" parent="menu_edition" icone="images/film-16.png" action="films" />
+	<menu nom="film_creer" titre="film:icone_creer_film" parent="outils_rapides" icone="images/film-new-16.png" action="film_edit" parametres="new=oui" />
+
+	<menu nom="acteur_creer" titre="acteur:icone_creer_acteur" parent="outils_rapides" icone="images/acteur-new-16.png" action="acteur_edit" parametres="new=oui" />
+
+	<menu nom="realisateur_creer" titre="realisateur:icone_creer_realisateur" parent="outils_rapides" icone="images/realisateur-new-16.png" action="realisateur_edit" parametres="new=oui" />
+
+	<menu nom="scenariste_creer" titre="scenariste:icone_creer_scenariste" parent="outils_rapides" icone="images/scenariste-new-16.png" action="scenariste_edit" parametres="new=oui" />
+
 </paquet>
