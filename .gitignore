@@ -10,3 +10,5 @@ local
 tmp
 .git
 /.project
+/.settings/
+/.buildpath
