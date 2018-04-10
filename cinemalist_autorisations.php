@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Cinemalist
- * (c) 2012 Rainer Muller
+ * (c) 2012 - 2018 Rainer Müller
  * Licence GNU/GPL
  */
 
@@ -18,16 +18,16 @@ function cinemalist_autoriser(){}
 // bouton de menu
 function autoriser_films_menu_dist($faire, $type, $id, $qui, $opts){
 	return true;
-} 
+}
 
 // bouton d'outils rapides
 function autoriser_filmcreer_menu_dist($faire, $type, $id, $qui, $opts){
 	return autoriser('creer', 'film', '', $qui, $opts);
-} 
+}
 
 // creer
 function autoriser_film_creer_dist($faire, $type, $id, $qui, $opt) {
-	return in_array($qui['statut'], array('0minirezo', '1comite')); 
+	return in_array($qui['statut'], array('0minirezo', '1comite'));
 }
 
 // voir les fiches completes
@@ -53,16 +53,16 @@ function autoriser_film_supprimer_dist($faire, $type, $id, $qui, $opt) {
 // bouton de menu
 function autoriser_acteurs_menu_dist($faire, $type, $id, $qui, $opts){
 	return true;
-} 
+}
 
 // bouton d'outils rapides
 function autoriser_acteurcreer_menu_dist($faire, $type, $id, $qui, $opts){
 	return autoriser('creer', 'acteur', '', $qui, $opts);
-} 
+}
 
 // creer
 function autoriser_acteur_creer_dist($faire, $type, $id, $qui, $opt) {
-	return in_array($qui['statut'], array('0minirezo', '1comite')); 
+	return in_array($qui['statut'], array('0minirezo', '1comite'));
 }
 
 // voir les fiches completes
@@ -88,16 +88,16 @@ function autoriser_acteur_supprimer_dist($faire, $type, $id, $qui, $opt) {
 // bouton de menu
 function autoriser_realisateurs_menu_dist($faire, $type, $id, $qui, $opts){
 	return true;
-} 
+}
 
 // bouton d'outils rapides
 function autoriser_realisateurcreer_menu_dist($faire, $type, $id, $qui, $opts){
 	return autoriser('creer', 'realisateur', '', $qui, $opts);
-} 
+}
 
 // creer
 function autoriser_realisateur_creer_dist($faire, $type, $id, $qui, $opt) {
-	return in_array($qui['statut'], array('0minirezo', '1comite')); 
+	return in_array($qui['statut'], array('0minirezo', '1comite'));
 }
 
 // voir les fiches completes
@@ -123,16 +123,16 @@ function autoriser_realisateur_supprimer_dist($faire, $type, $id, $qui, $opt) {
 // bouton de menu
 function autoriser_scenaristes_menu_dist($faire, $type, $id, $qui, $opts){
 	return true;
-} 
+}
 
 // bouton d'outils rapides
 function autoriser_scenaristecreer_menu_dist($faire, $type, $id, $qui, $opts){
 	return autoriser('creer', 'scenariste', '', $qui, $opts);
-} 
+}
 
 // creer
 function autoriser_scenariste_creer_dist($faire, $type, $id, $qui, $opt) {
-	return in_array($qui['statut'], array('0minirezo', '1comite')); 
+	return in_array($qui['statut'], array('0minirezo', '1comite'));
 }
 
 // voir les fiches completes
