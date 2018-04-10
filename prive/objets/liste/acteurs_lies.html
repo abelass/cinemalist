@@ -38,7 +38,7 @@ a mis a jour la valeur avec la page reelle]
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_acteurs(ACTEURS acteurs_liens){id_acteur IN #GET{selection}}{statut?}
+	<BOUCLE_liste_acteurs(ACTEURS){id_acteur IN #GET{selection}}{statut?}
 		{tri #ENV{par,multi nom},#GET{defaut_tri}}{pagination #ENV{nb,10} actl}>
 		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#NOM**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)][(#ID_ACTEUR|=={#ENV{id_lien_ajoute}}|oui)append]">
 			<td class='statut'>[(#STATUT|puce_statut{acteur})]</td>
