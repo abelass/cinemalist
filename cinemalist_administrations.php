@@ -100,8 +100,8 @@ function cinemalist_upgrade($nom_meta_base_version, $version_cible) {
 			$maj['0.4.1'] = array(
 				array('maj_tables', array('spip_films')),
 				);
-			$maj['2.2.0'] = array(
-				array('maj_tables', array('spip_acteurs')),
+			$maj['2.2.1'] = array(
+				array('maj_tables', array('spip_acteurs', 'spip_scenaristes', 'spip_realisateurs')),
 			);
 
 	include_spip('base/upgrade');
@@ -138,5 +138,3 @@ function cinemalist_vider_tables($nom_meta_base_version) {
 		effacer_meta($nom_meta_base_version);
 }
 
-
-?>
